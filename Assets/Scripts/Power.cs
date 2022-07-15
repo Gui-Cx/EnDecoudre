@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Power : MonoBehaviour
+public abstract class Power : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    /// <summary>
+    /// The number of uses left for this power;
+    /// </summary>
+    public int currentCharges;
+
+    /// <summary>
+    /// The total number of uses at the start for this power;
+    /// </summary>
+    public int totalCharges;
+
+    /// <summary>
+    /// The method called when the power must discard one use
+    /// </summary>
+    public void Activate(){
+        if (currentCharges > 0){
+            ActivateOnce();
+            currentCharges--;
+        } else {
+            //An animation where the player to show the player does not have enough charges
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected void ActivateOnce();
 }
