@@ -1,22 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     enum States { onFoot, onFly, onWait }
+    [SerializeField] int indexOfPrefab;
+    public static event Action<int> ThePlayerSpawns;
     States playerState;
     void Awake()
     {
-        playerState = States.onFoot;
+        playerState = States.onFoot; }
+{
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ThePlayerSpawns?.Invoke(indexOfPrefab);
+
     }
 
     void Update()
     {
-        if(playerState == States.onWait)
-        {
-            //speed = 0
-        }
+
     }
 
     private void Yeet() //Se mettre en position d'attente du Yeet
@@ -36,13 +46,5 @@ public class Player : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision) 
-    {
-        if (playerState == States.onWait && collision.tag == "Player")
-        {
-            Player otherPlayer = collision.GetComponent<Player>();
-            otherPlayer.onYeet("yes");
-            playerState = States.onFoot;
-        }
-    }
+
 }
