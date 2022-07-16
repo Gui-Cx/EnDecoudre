@@ -11,7 +11,7 @@ public class UImanager : MonoBehaviour
     public Image[] playerOneHeart, playerTwoHeart;
     public Sprite emptyHeart, fullHeart;
 
-    
+
     public void SwapSkill(Sprite skill, int playerIndex, int faceValue) {
 
         switch(playerIndex) {
