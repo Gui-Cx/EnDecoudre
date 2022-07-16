@@ -821,15 +821,15 @@ Tilemap:
       e13: 4.22e-43
       e20: -8.779869e-30
       e21: 1e-45
-      e22: 2.3422632e-19
-      e23: 3.710924e+19
+      e22: 2.225118e-19
+      e23: 3.711719e+19
       e30: 4.5905e-41
       e31: 0
       e32: 4.23e-43
       e33: 4.26e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 3.5627e-41, g: 3.5627e-41, b: 3.5627e-41, a: 3.5627e-41}
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
