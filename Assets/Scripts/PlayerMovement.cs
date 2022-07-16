@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float inputX;
     private float inputY;
     private Vector2 moveDirection;
-    [SerializeField] private float move_speed;
+    [SerializeField] private float moveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * move_speed;
+        rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
         anim.SetFloat("inputX", inputX);
         anim.SetFloat("inputY", inputY);
     }
