@@ -5,14 +5,15 @@ using System;
 using UnityEngine.InputSystem;
 using System.Linq;
 
+
 public class Player : MonoBehaviour
 {
     enum States { onFoot, onFly, onWait }
+    [SerializeField] int indexOfPrefab;
+    public static event Action<int> ThePlayerSpawns;
     States playerState;
     private CircleCollider2D detection;
     private PlayerMovement playerMovement;
-    [SerializeField] int indexOfPrefab;
-    public static event Action<int> ThePlayerSpawns;
     public Transform playerTransform;
 
     private float duration = 2f;
@@ -67,11 +68,13 @@ public class Player : MonoBehaviour
         var mid = Vector2.Lerp(start, end, t);
 
         return new Vector2(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t));
+
     }
 
 
     private IEnumerator Fly(Vector2 start, Vector2 finish)
     {
+
         float animation = 0f;
         while (animation < duration)
         {
@@ -83,18 +86,8 @@ public class Player : MonoBehaviour
         yield return null;
     }
 
-    private void Yeet() //Se mettre en position d'attente du Yeet
-    {
-        if (playerState == States.onFoot)
-        {
-            playerState = States.onWait; //faire en sorte qu'il ne puisse pas se déplacer
-        }
-    }
-
-    public void onYeet(string orientation) //Quand l'autre joueur nous yeet
-    {
-        playerState = States.onFly;
-        //deplacement du joueur selon l'orientation
-        playerState = States.onFoot;
-    }
 }
+
+
+
+

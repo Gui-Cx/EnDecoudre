@@ -17,21 +17,10 @@ public class SwitchCharacters : MonoBehaviour
     void Start()
     {
         playerManager=this.GetComponent<PlayerInputManager>();
-        //playersInput = new PlayerInput[2] {playersPrefab[0].GetComponent<PlayerInput>(), playersPrefab[1].GetComponent<PlayerInput>() };
-
         Player.ThePlayerSpawns += OnReceptionOfSignal;
 
-
-        //playersInput[0].actions.FindActionMap("Player0").Enable();
-        //playersInput[0].actions.FindActionMap("Player1").Disable();
-        //playersInput[1].actions.FindActionMap("Player1").Enable();
-        //playersInput[1].actions.FindActionMap("Player0").Disable();
-
-
-        //playersInput[0].SwitchCurrentActionMap("Player0");
-        //playersInput[1].SwitchCurrentActionMap("Player1");
-
-
+        var p1 = PlayerInput.Instantiate(playersPrefab[0], controlScheme: "Keyboard0", pairWithDevice: Keyboard.current);
+        var p2 = PlayerInput.Instantiate(playersPrefab[1], controlScheme: "Keyboard1", pairWithDevice: Keyboard.current);
     }
 
     // Update is called once per frame
@@ -49,12 +38,15 @@ public class SwitchCharacters : MonoBehaviour
         return playerManager.playerCount;
     }
 
+
+    
     private void OnReceptionOfSignal(int indexOfPrefab)
     {
+        /*
         indexOtherPrefab = (indexOfPrefab == 0) ? 1 : 0;
-        //GameObject player = GameObject.Find("Player" + indexOfPrefab + "(Clone)");
-        //Debug.Log(player.name);
-        //PlayerInput playerInput = player.GetComponent<PlayerInput>();
+        GameObject player = GameObject.Find("Player" + indexOfPrefab + "(Clone)");
+        Debug.Log(player.name);
+        PlayerInput playerInput = player.GetComponent<PlayerInput>();
         //playerInput.SwitchCurrentControlScheme("Keyboard" + indexOfPrefab);
         //playersInput[indexOfPrefab].actions.Enable();
 
@@ -62,6 +54,7 @@ public class SwitchCharacters : MonoBehaviour
 
         //playerInput.SwitchCurrentActionMap("Player"+indexOfPrefab);
         //playerInput.actions.FindActionMap("Player" + indexOtherPrefab).Disable();
+        */
     }
 
 }
