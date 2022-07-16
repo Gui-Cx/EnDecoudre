@@ -8,9 +8,7 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-<<<<<<< HEAD
     enum States { onFoot, onFly, onWait }
-=======
     public int hp;
 
     public Power currentPower;
@@ -19,7 +17,7 @@ public class Player : MonoBehaviour
 
     private System.Random rnd = new System.Random();
 
->>>>>>> e05da51a35a116ef137e5dd1b737ad00cdd58434
+
     [SerializeField] int indexOfPrefab;
     public static event Action<int> ThePlayerSpawns;
     States playerState;
@@ -29,25 +27,21 @@ public class Player : MonoBehaviour
 
     private float duration = 2f;
 
-<<<<<<< HEAD
     void Awake()
     {
         playerState = States.onFoot;
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-=======
-
-    void Awake(){
-        availablePowers = new List<PowerEnum>(){PowerEnum.Nova, PowerEnum.Dash, PowerEnum.Boomerang, PowerEnum.Sword};
+        availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Dash, PowerEnum.Boomerang, PowerEnum.Sword };
         currentPower = Roll();
->>>>>>> e05da51a35a116ef137e5dd1b737ad00cdd58434
     }
+
+
 
     void Start()
     {
         ThePlayerSpawns?.Invoke(indexOfPrefab);
-<<<<<<< HEAD
     }
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
@@ -87,10 +81,9 @@ public class Player : MonoBehaviour
         var mid = Vector2.Lerp(start, end, t);
 
         return new Vector2(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t));
-=======
-        // print(this.GetComponent<PlayerInput>().currentControlScheme);
+
     }
->>>>>>> e05da51a35a116ef137e5dd1b737ad00cdd58434
+
 
     private Power Roll()
     {
@@ -99,7 +92,6 @@ public class Player : MonoBehaviour
         return power;
     }
 
-<<<<<<< HEAD
 
     private IEnumerator Fly(Vector2 start, Vector2 finish)
     {
@@ -113,7 +105,8 @@ public class Player : MonoBehaviour
         }
         playerState = States.onFoot;
         yield return null;
-=======
+    }
+
     public void Fire(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -130,7 +123,7 @@ public class Player : MonoBehaviour
                 currentPower = Roll();
             }
         }
->>>>>>> e05da51a35a116ef137e5dd1b737ad00cdd58434
+
     }
 
 }

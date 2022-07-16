@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  currentPower: {fileID: 11400000, guid: 23bb24a6c47ca9b4183f86aa1fb25e2a, type: 2}
   availablePowers: 
+  indexOfPrefab: 0
+  playerTransform: {fileID: 0}
 --- !u!114 &2671701060850033207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,9 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab62cc68dde92044eba8d5baf755d678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
   maxSpeed: 10
-
 --- !u!50 &2671701060850033209
 Rigidbody2D:
   serializedVersion: 4
@@ -323,6 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31236b0dbc47d2548bc82da163f3b15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  availablePowers: 
   indexOfPrefab: 0
   playerTransform: {fileID: 0}
 --- !u!58 &6345004388775946760
