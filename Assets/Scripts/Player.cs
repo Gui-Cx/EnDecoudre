@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (playerState == States.onWait && collision.CompareTag("Player"))
         {
@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
 
         }
     }
+        //print(this.GetComponent<PlayerInput>().currentControlScheme);
 
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
     {
