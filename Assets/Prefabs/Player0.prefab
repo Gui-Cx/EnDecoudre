@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2671701060850033209}
   - component: {fileID: 2671701060850033210}
   - component: {fileID: 2671701060850033204}
+  - component: {fileID: 4442533327105839806}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,9 +179,13 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c8df9ac9-94aa-48ec-be5e-450604a3a10a
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f4e7a34-39f0-4190-8c4e-f282ede05a72
+    m_ActionName: Player 1/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Player0
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2671701060850033208
@@ -263,3 +268,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4442533327105839806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671701060850033211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31236b0dbc47d2548bc82da163f3b15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexOfPrefab: 0
