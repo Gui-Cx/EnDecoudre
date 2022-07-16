@@ -74,3 +74,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+#input system
+Packages/packages-lock.json
+Packages/com.unity.inputsystem/artifacts/**
+Packages/com.unity.inputsystem/build/**
+Packages/com.unity.inputsystem/Documentation~/ApiDocs/**
+Packages/com.unity.inputsystem/.DS_Store
+Packages/com.unity.inputsystem/.npmrc
+Packages/com.unity.inputsystem/**/*.api
+Packages/com.unity.inputsystem/**/*.api.meta

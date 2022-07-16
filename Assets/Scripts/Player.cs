@@ -14,14 +14,21 @@ public class Player : MonoBehaviour
 
     private System.Random rnd = new System.Random();
 
+    [SerializeField] int indexOfPrefab;
+    public static event Action<int> ThePlayerSpawns;
+
+
     void Awake(){
         availablePowers = new List<PowerEnum>(){PowerEnum.Nova, PowerEnum.Dash, PowerEnum.Boomerang, PowerEnum.Sword};
         currentPower = Roll();
     }
 
-    //Start 
+    // Start is called before the first frame update
     void Start()
-    {}
+    {
+        ThePlayerSpawns?.Invoke(indexOfPrefab);
+        // print(this.GetComponent<PlayerInput>().currentControlScheme);
+    }
 
     private Power Roll()
     {
