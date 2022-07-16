@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         inputX = context.ReadValue<Vector2>().x;
         inputY = context.ReadValue<Vector2>().y;
         moveDirection = new Vector2(inputX, inputY).normalized;
-
     }
 
     public float[] getDirection()
