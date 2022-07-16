@@ -180,6 +180,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c8df9ac9-94aa-48ec-be5e-450604a3a10a
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5899216545713115448}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Yeet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8466dd4c-4c4a-42bc-80ab-6d0e2a108d24
+    m_ActionName: Player0/Yeet[/Keyboard/e,/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard1
   m_DefaultActionMap: Player0
