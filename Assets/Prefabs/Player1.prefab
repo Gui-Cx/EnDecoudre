@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1054502083548198358}
   - component: {fileID: 5899216545713115448}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,12 +179,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c8df9ac9-94aa-48ec-be5e-450604a3a10a
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f4e7a34-39f0-4190-8c4e-f282ede05a72
-    m_ActionName: Player 1/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard1
   m_DefaultActionMap: Player0
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

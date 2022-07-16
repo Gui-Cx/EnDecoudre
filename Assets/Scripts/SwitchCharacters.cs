@@ -12,11 +12,12 @@ public class SwitchCharacters : MonoBehaviour
     PlayerInput[] playersInput;
     int current;
     int tmpCurrent;
+    int indexOtherPrefab;
     // Start is called before the first frame update
     void Start()
     {
         playerManager=this.GetComponent<PlayerInputManager>();
-        playersInput = new PlayerInput[2] {playersPrefab[0].GetComponent<PlayerInput>(), playersPrefab[1].GetComponent<PlayerInput>() };
+        //playersInput = new PlayerInput[2] {playersPrefab[0].GetComponent<PlayerInput>(), playersPrefab[1].GetComponent<PlayerInput>() };
 
         Player.ThePlayerSpawns += OnReceptionOfSignal;
 
@@ -50,10 +51,17 @@ public class SwitchCharacters : MonoBehaviour
 
     private void OnReceptionOfSignal(int indexOfPrefab)
     {
-        playersInput[indexOfPrefab].actions.FindActionMap("Player" + indexOfPrefab).Disable();
-        playersInput[indexOfPrefab].SwitchCurrentActionMap("Player"+indexOfPrefab);
-        playersInput[indexOfPrefab].actions.FindActionMap("Player" + indexOfPrefab).Enable();
+        indexOtherPrefab = (indexOfPrefab == 0) ? 1 : 0;
+        //GameObject player = GameObject.Find("Player" + indexOfPrefab + "(Clone)");
+        //Debug.Log(player.name);
+        //PlayerInput playerInput = player.GetComponent<PlayerInput>();
+        //playerInput.SwitchCurrentControlScheme("Keyboard" + indexOfPrefab);
+        //playersInput[indexOfPrefab].actions.Enable();
 
+        //playersInput[indexOfPrefab].actions.FindActionMap("Player" + indexOfPrefab).Enable();
+
+        //playerInput.SwitchCurrentActionMap("Player"+indexOfPrefab);
+        //playerInput.actions.FindActionMap("Player" + indexOtherPrefab).Disable();
     }
 
 }
