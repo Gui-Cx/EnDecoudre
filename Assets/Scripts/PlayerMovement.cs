@@ -10,19 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float inputX;
     private float inputY;
-<<<<<<< Updated upstream
     [SerializeField] public float maxSpeed;
-    private Vector2 moveDirection;
-    private float moveSpeed;
 
 
-=======
     private float inputXTmp;
     private float inputYTmp;
     private Vector2 moveDirection;
     [SerializeField] private float moveSpeed;
     private bool isMoving;
->>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +31,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-<<<<<<< Updated upstream
-        rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
-        anim.SetFloat("inputX", inputX);
-        anim.SetFloat("inputY", inputY);
-=======
         rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
         isMoving = !(inputX==0 && inputY==0);
         print(isMoving);
@@ -59,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("inputY", inputYTmp);
         }
 
-        
-
->>>>>>> Stashed changes
     }
 
     public void Move(InputAction.CallbackContext context)
