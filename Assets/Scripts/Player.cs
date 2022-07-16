@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 { 
@@ -23,6 +23,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(this.GetComponent<PlayerInput>().currentControlScheme);
     }
 }
