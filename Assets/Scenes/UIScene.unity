@@ -1464,7 +1464,7 @@ GameObject:
   - component: {fileID: 929259146}
   - component: {fileID: 929259145}
   m_Layer: 5
-  m_Name: Heart_3
+  m_Name: Heart_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1483,7 +1483,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1480568639}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1783,6 +1783,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291993189}
   m_CullTransparentMesh: 1
+--- !u!1 &1419727932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419727934}
+  - component: {fileID: 1419727933}
+  m_Layer: 0
+  m_Name: UImanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1419727933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419727932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e75c1cca35251439fa8045d1c90526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOneSkill: {fileID: 1818115235}
+  playerTwoSkill: {fileID: 576029611}
+  playerOneDiceface: {fileID: 1291993191}
+  playerTwoDiceface: {fileID: 149925755}
+  playerOneHeart:
+  - {fileID: 662307059}
+  - {fileID: 798962678}
+  - {fileID: 808138726}
+  playerTwoHeart:
+  - {fileID: 929259145}
+  - {fileID: 1687334311}
+  - {fileID: 1607505912}
+  emptyHeart: {fileID: 21300000, guid: 150a7dd534a3fa24b98c2949dbed21cb, type: 3}
+  fullHeart: {fileID: 21300000, guid: 0d2c7c0c74d9fc845810cfcb78863f16, type: 3}
+  testSkill: {fileID: 21300000, guid: 33625f5d4deae3848acc73c8ecf3c363, type: 3}
+--- !u!4 &1419727934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419727932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 475.13492, y: 22.685009, z: 0.48751798}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480568638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,9 +1873,9 @@ RectTransform:
   - {fileID: 769546652}
   - {fileID: 2044843077}
   - {fileID: 634735139}
-  - {fileID: 1607505911}
-  - {fileID: 1687334310}
   - {fileID: 929259144}
+  - {fileID: 1687334310}
+  - {fileID: 1607505911}
   - {fileID: 843843955}
   m_Father: {fileID: 1904434041}
   m_RootOrder: 1
@@ -1838,7 +1897,7 @@ GameObject:
   - component: {fileID: 1607505913}
   - component: {fileID: 1607505912}
   m_Layer: 5
-  m_Name: Heart_1
+  m_Name: Heart_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1857,7 +1916,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1480568639}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
