@@ -213,7 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab62cc68dde92044eba8d5baf755d678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 2
+  maxSpeed: 2
+  moveSpeed: 2
 --- !u!50 &1054502083548198363
 Rigidbody2D:
   serializedVersion: 4
@@ -271,7 +272,7 @@ Animator:
   m_GameObject: {fileID: 1054502083548198361}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e05462192f7acac4483bf6e15fc07efa, type: 2}
+  m_Controller: {fileID: 9100000, guid: fed0cb7a20536a247905f68b74ed48f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -293,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31236b0dbc47d2548bc82da163f3b15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  availablePowers: 
   indexOfPrefab: 1
   playerTransform: {fileID: 0}
 --- !u!58 &9167767772061163750

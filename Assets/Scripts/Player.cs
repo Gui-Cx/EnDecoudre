@@ -58,8 +58,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        print(playerState);
+    }
 
-     private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (playerState == States.onWait && collision.CompareTag("Player"))
         {
