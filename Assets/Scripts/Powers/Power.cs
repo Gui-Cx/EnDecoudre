@@ -44,10 +44,10 @@ public abstract class Power : MonoBehaviour
             case PowerEnum.Dash:
                 power = new Dash();
                 break;
-            case PowerEnum.Boomerang:
-                break;
-            case PowerEnum.Sword:
-                break;
+            // case PowerEnum.Boomerang:
+            //     break;
+            // case PowerEnum.Sword:
+            //     break;
             default:
                 throw new System.NotImplementedException(string.Format("PowerEnum : {0} not recognized", powerName));
         }

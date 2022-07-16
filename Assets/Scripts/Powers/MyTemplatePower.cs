@@ -8,16 +8,18 @@ public abstract class MyTemplatePower : ScriptableObject
 
     public int totalCharges;
 
-    public void Activate()
+    public void Activate(Player player)
     {
         if (currentCharges > 0)
         {
             currentCharges--;
-            ActivateOnce();
+            ActivateOnce(player);
         }
         else
         {
             //An animation where the player to show the player does not have enough charges
         }
     }
+
+    public abstract void ActivateOnce(Player player);
 }
