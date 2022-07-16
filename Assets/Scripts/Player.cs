@@ -30,11 +30,6 @@ public class Player : MonoBehaviour
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
 
-    void Update()
-    {
-        print(playerState);
-    }
-
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
         if (playerState == States.onFoot)
@@ -86,5 +81,20 @@ public class Player : MonoBehaviour
         }
         playerState = States.onFoot;
         yield return null;
+    }
+
+    private void Yeet() //Se mettre en position d'attente du Yeet
+    {
+        if (playerState == States.onFoot)
+        {
+            playerState = States.onWait; //faire en sorte qu'il ne puisse pas se déplacer
+        }
+    }
+
+    public void onYeet(string orientation) //Quand l'autre joueur nous yeet
+    {
+        playerState = States.onFly;
+        //deplacement du joueur selon l'orientation
+        playerState = States.onFoot;
     }
 }

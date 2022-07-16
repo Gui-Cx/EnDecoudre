@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
         anim.SetFloat("inputX", inputX);
         anim.SetFloat("inputY", inputY);
