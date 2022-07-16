@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Dash : Power
 {
-    public new int totalCharges = 4;
+    public override int totalCharges{get; set;} = 4;
 
     public Dash(){}
 
-    protected override void ActivateOnce()
+    public override void ActivateOnce(Player player)
     {
-        Debug.LogFormat("Cx : Dash activated");
+        Debug.LogFormat("Cx : Dash activated ! Total charges = {0}, remaining charges = {1}", totalCharges, currentCharges);
     }
 }
