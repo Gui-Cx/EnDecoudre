@@ -26,5 +26,6 @@ public abstract class Power : MonoBehaviour
         }
     }
 
-    protected void ActivateOnce();
+    protected void ActivateOnce()
+    { }
 }
