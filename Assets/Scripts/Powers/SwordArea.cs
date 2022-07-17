@@ -38,7 +38,7 @@ public class SwordArea : MonoBehaviour
         Vector2 playerForward = new Vector2(playerForwardArray[0], playerForwardArray[1]);
         float angle = Vector2.Angle(playerForward, playerToCollider);
         Debug.LogFormat("Cx : angle = {0}", angle);
-        if (Mathf.Abs(angle) < swordPower.swordData.angle)
+        if (Mathf.Abs(angle) < swordPower.swordData.angle/2)
         {
             if (collider.gameObject.tag.Equals("Monster"))
             {
