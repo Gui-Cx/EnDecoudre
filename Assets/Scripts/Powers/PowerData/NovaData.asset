@@ -18,4 +18,5 @@ MonoBehaviour:
   radius: 4
   damage: 2
   duration: 3
+  novaEffect: {fileID: 5179440133133769493, guid: 505a57542dd5e104389d18e5e6b74a9c, type: 3}
   novaAreaPrefab: {fileID: 8161029827456226390, guid: 9f1446389ab8e4344b00a5595a9dfc99, type: 3}

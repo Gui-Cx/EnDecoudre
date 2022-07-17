@@ -15,6 +15,8 @@ public class NovaData : PowerData
     [Tooltip("Duration of the nova")]
     public int duration;
 
+    public GameObject novaEffect;
+
     [SerializeField]
     [Tooltip("The prefab of the nova area")]
     public GameObject novaAreaPrefab;
