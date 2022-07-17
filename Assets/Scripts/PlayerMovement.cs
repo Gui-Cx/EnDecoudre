@@ -40,13 +40,14 @@ public class PlayerMovement : MonoBehaviour
         isMoving = !(inputX==0 && inputY==0);
         //print(isMoving);
         anim.SetBool("isMoving", isMoving);
-        if (!onFly)
-        {
-            SoundAssets.instance.PlayFootstep();
-        }
+        
 
         if (isMoving)
-        { 
+        {
+            if (!onFly)
+            {
+                SoundAssets.instance.PlayFootstep();
+            }
             anim.SetFloat("inputX", inputX);
             anim.SetFloat("inputY", inputY);
             inputXTmp = inputX;
