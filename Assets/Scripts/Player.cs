@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public Transform playerTransform;
     Animator anim;
 
+    bool canFire;
+
     private float duration = 2f;
 
     public int currentFace;
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
         hp = maxHP;
+        canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
@@ -138,8 +141,9 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            if (currentPower != null && currentPower.currentCharges > 0)
+            if (currentPower != null && currentPower.currentCharges > 0 && canFire)
             {
+                StartCoroutine(CooldownAttack());
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
@@ -147,6 +151,13 @@ public class Player : MonoBehaviour
 
     }
 
+    private IEnumerator CooldownAttack()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(2);
+        canFire = true;
+        yield return null;
+    }
 
     private void die()
     {
