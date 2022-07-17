@@ -41,7 +41,7 @@ public class SoundAssets : MonoBehaviour
     public void PlayYeetSound(int player)
     {
         int soundToPlay = Random.Range(0, 2);
-        if (player == 0)
+        if (player == 1)
         {
             switch (soundToPlay)
             {
@@ -79,7 +79,7 @@ public class SoundAssets : MonoBehaviour
     public void PlayPlayerDieSound(int player)
     {
         int soundToPlay = Random.Range(0, 3);
-        if (player == 0)
+        if (player == 1)
         {            
             switch (soundToPlay)
             {
@@ -155,7 +155,7 @@ public class SoundAssets : MonoBehaviour
     public void PlayTakeDamagePlayer(int player)
     {
         int soundToPlay = Random.Range(0, 3);
-        if (player == 0)
+        if (player == 1)
         {
             switch (soundToPlay)
             {
