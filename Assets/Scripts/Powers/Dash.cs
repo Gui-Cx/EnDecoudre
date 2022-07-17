@@ -18,13 +18,12 @@ public class Dash : Power
     /// </summary>
     public DashData dashData;
 
-
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Dash {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, dashData.ToString());
     }
     public Dash(PowerData powerData) : base(powerData)
     {
-        DashData dashData = powerData as DashData;
+        dashData = powerData as DashData;
     }
 }

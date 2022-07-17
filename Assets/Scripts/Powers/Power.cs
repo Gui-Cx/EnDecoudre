@@ -61,7 +61,7 @@ public abstract class Power
                 break;
             case PowerEnum.Machinegun:
                 powerData = listPowerData[index];
-                power = new Shotgun(powerData);
+                power = new Machinegun(powerData);
                 break;
             default:
                 throw new System.NotImplementedException(string.Format("PowerEnum : {0} not recognized", powerName));
@@ -73,7 +73,6 @@ public abstract class Power
 
     public Power(PowerData powerData)
     {
-        Debug.LogFormat("Cx : Power construit");
         totalCharges = powerData.totalCharges;
         currentCharges = powerData.totalCharges;
         

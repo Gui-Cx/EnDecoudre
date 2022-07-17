@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     private float duration = 2f;
 
+    public int currentFace;
+
 
     [SerializeField]
     public List<PowerData> listPowerPrefabs;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        currentPower = Roll();
+        Roll();
 
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
@@ -92,10 +94,11 @@ public class Player : MonoBehaviour
     }
 
 
-    private Power Roll()
+    public void Roll()
     {
-        int val = rnd.Next(0, availablePowers.Count - 1); //Next(int x, int y) returns a value between x and y, both included.
-        return Power.GetPower(availablePowers[val], listPowerPrefabs);;
+        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
+        currentPower = Power.GetPower(availablePowers[currentFace], listPowerPrefabs);
     }
 
 
@@ -110,6 +113,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         playerState = States.onFoot;
+        Roll();
         yield return null;
     }
 
@@ -119,14 +123,12 @@ public class Player : MonoBehaviour
         {
             if (currentPower != null && currentPower.currentCharges > 0)
             {
-                Debug.LogFormat("Cx : Remaining charges before firing = {0}", currentPower.currentCharges);
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
             else
             {
-                Debug.LogFormat("Cx : Can't shoot, choosing new weapon!");
-                currentPower = Roll();
+                Roll();
             }
         }
 
