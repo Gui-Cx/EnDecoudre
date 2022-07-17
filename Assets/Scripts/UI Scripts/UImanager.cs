@@ -69,6 +69,7 @@ public class UImanager : MonoBehaviour
             anim.SetTrigger("MainMenuOpen");
         } else {
             anim.SetTrigger("MainMenuClose");
+            GameManager.Instance.UpdateGameState(GameManager.GameState.InGame);
         }
     }
 
