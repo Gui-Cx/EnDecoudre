@@ -15,6 +15,7 @@ public class ShotgunData : PowerData
     [Tooltip("The damage taken by each enemy hit by the cone")]
     public int damage;
 
+    public GameObject bulletPrefab;
     public override string ToString()
     {
         return string.Format("ShotgunData : radius = {0}, angle = {1}, damage = {2}, cooldown = {3}, total charges = {4}", radius, angle, damage, cooldown, totalCharges);

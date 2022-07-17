@@ -19,7 +19,7 @@ public class Boomerang : Power
         Debug.LogFormat("Boomerang {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, boomerangData.ToString());
     }
 
-    public Boomerang(PowerData powerData) : base(powerData)
+    public Boomerang(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         boomerangData = powerData as BoomerangData;
     }

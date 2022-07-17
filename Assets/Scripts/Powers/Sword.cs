@@ -19,7 +19,7 @@ public class Sword : Power
         SoundAssets.instance.PlaySword();
     }
 
-    public Sword(PowerData powerData) : base(powerData)
+    public Sword(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         swordData = powerData as SwordData;
     }

@@ -15,7 +15,7 @@ public class BulletShotgun : MonoBehaviour
     {
         if (collision.tag == "Monster")
         {
-            //collision.gameObject.GetComponent<Monster>().takeDamage(damage);
+            collision.gameObject.GetComponent<Monster>().loseHP(damage);
             Destroy(this);
         }
     }

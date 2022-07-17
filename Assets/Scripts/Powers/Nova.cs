@@ -20,7 +20,7 @@ public class Nova : Power
         Debug.LogFormat("Nova {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, novaData.ToString());
     }
 
-    public Nova(PowerData powerData) : base (powerData){
+    public Nova(PowerData powerData, Player playerArg) : base (powerData, playerArg){
         novaData = (powerData as NovaData);
     }
 }

@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 using System.Linq;
 
 
+public enum States { OnFoot, Flying, Waiting, Dashing }
+
 public class Player : MonoBehaviour
 {
-    public enum States { onFoot, onFly, onWait }
     public int hp;
     [SerializeField] public int maxHP;
 
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        playerState = States.onFoot;
+        playerState = States.OnFoot;
         anim = this.GetComponent<Animator>();
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
@@ -65,15 +66,15 @@ public class Player : MonoBehaviour
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
-        if (playerState == States.onFoot)
+        if (playerState == States.OnFoot)
         {
-            playerState = States.onWait;
+            playerState = States.Waiting;
             anim.SetBool("onWait", true);
             playerMovement.setSpeed(0);
         }
         if (context.canceled)
         {
-            playerState = States.onFoot;
+            playerState = States.OnFoot;
             anim.SetBool("onWait", false);
             playerMovement.setSpeed(playerMovement.maxSpeed);
         }
@@ -99,9 +100,10 @@ public class Player : MonoBehaviour
     public void Roll()
     {
         currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
-        currentPower = Power.GetPower(availablePowers[currentFace], listPowerPrefabs);
-        indexOfFace = currentFace + 1;
+        currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
+        indexOfFace = currentFace +1;
     }
 
 
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
-        Debug.Log(indexOfFace);
+        Debug.LogFormat("index of Face = {0}", indexOfFace);
         while (animation < duration)
         {
             animation += Time.deltaTime;
@@ -123,9 +125,10 @@ public class Player : MonoBehaviour
             //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }
+        Roll();
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
-        playerState = States.onFoot;
+        playerState = States.OnFoot;
         this.GetComponent<BoxCollider2D>().isTrigger = false;
         anim.SetBool("onFly", false);
         yield return null;
@@ -140,10 +143,6 @@ public class Player : MonoBehaviour
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
-            else
-            {
-                Roll();
-            }
         }
 
     }
@@ -152,14 +151,14 @@ public class Player : MonoBehaviour
     private void die()
     {
         SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
-        print("isdie");
+        Debug.Log("{0} died");
     }
 
     public void takeDamage(int value)
     {
         hp -= value;
         SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
-        print(hp);
+        Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
         if( hp <= 0)
         {
             die();

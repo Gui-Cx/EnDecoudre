@@ -30,11 +30,12 @@ public abstract class Power
     public float cooldown;
 
     public PowerData _powerData;
+    public Player player;
     
 
     public abstract void ActivateOnce(Player player);
 
-    public static Power GetPower(PowerEnum powerName, List<PowerData> listPowerData)
+    public static Power GetPower(Player playerArg, PowerEnum powerName, List<PowerData> listPowerData)
     {
         Power power;
         PowerData powerData;
@@ -43,27 +44,27 @@ public abstract class Power
         {
             case PowerEnum.Nova:
                 powerData = listPowerData[index];
-                power = new Nova(powerData);
+                power = new Nova(powerData, playerArg);
                 break;
             case PowerEnum.Shotgun:
                 powerData = listPowerData[index];
-                power = new Shotgun(powerData);
+                power = new Shotgun(powerData, playerArg);
                 break;
             case PowerEnum.Boomerang:
                 powerData = listPowerData[index];
-                power = new Boomerang(powerData);
+                power = new Boomerang(powerData, playerArg);
                 break;
             case PowerEnum.Dash:
                 powerData = listPowerData[index];
-                power = new Dash(powerData);
+                power = new Dash(powerData, playerArg);
                 break;
             case PowerEnum.Sword:
                 powerData = listPowerData[index];
-                power = new Sword(powerData);
+                power = new Sword(powerData, playerArg);
                 break;
             case PowerEnum.Machinegun:
                 powerData = listPowerData[index];
-                power = new Machinegun(powerData);
+                power = new Machinegun(powerData, playerArg);
                 break;
             default:
                 throw new System.NotImplementedException(string.Format("PowerEnum : {0} not recognized", powerName));
@@ -73,8 +74,9 @@ public abstract class Power
     
     public Power(){}
 
-    public Power(PowerData powerData)
+    public Power(PowerData powerData, Player playerArg)
     {
+        this.player = playerArg;
         totalCharges = powerData.totalCharges;
         currentCharges = powerData.totalCharges;
         _powerData = powerData;
