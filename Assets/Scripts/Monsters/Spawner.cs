@@ -43,6 +43,7 @@ public class Spawner : MonoBehaviour
             {
                 //signal d'ouvrir la porte 
                 print("QUIGRY8RQEO");
+                SoundAssets.instance.PlayOpenDoor();
             }
             else
             {

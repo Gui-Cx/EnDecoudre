@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Roll();
-
+        SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
 
@@ -123,6 +123,7 @@ public class Player : MonoBehaviour
     private IEnumerator Fly(Vector2 start, Vector2 finish)
     {
         this.GetComponent<PlayerMovement>().SetOnFly(true);
+        SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
@@ -163,12 +164,14 @@ public class Player : MonoBehaviour
 
     private void die()
     {
+        SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
         print("isdie");
     }
 
     public void takeDamage(int value)
     {
         hp -= value;
+        SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
         print(hp);
         if( hp <= 0)
         {
