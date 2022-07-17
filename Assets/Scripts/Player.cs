@@ -115,8 +115,9 @@ public class Player : MonoBehaviour
 
     public void Roll()
     {
-        //currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
-        currentFace = (int)PowerEnum.Machinegun;
+        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+
+
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
         indexOfFace = currentFace +1;

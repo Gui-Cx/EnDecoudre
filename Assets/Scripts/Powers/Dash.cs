@@ -24,22 +24,23 @@ public class Dash : Power
 
     public PlayerMovement playerMovement;
 
-    private LineRenderer lineRenderer;
+    //private TrailRenderer trailRenderer;
 
     public override void ActivateOnce(Player player)
     {
         //Debug.LogFormat("Dash {0}/{1} : {2}", totalCharges - currentCharges, totalCharges, dashData.ToString());
         Debug.LogFormat("Dash {0}/{1}", totalCharges - currentCharges, totalCharges);
         player.playerState = States.Dashing;
-        lineRenderer.enabled = true;
+        //trailRenderer.emitting = true;
         playerMovement.InitDashMovement(this);
+
     }
     public Dash(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         dashData = powerData as DashData;
         dashSpeed = dashData.distance / dashData.duration;
         playerMovement = playerArg.gameObject.GetComponent<PlayerMovement>();
-        lineRenderer = player.GetComponent<LineRenderer>();
+        //trailRenderer = player.GetComponent<TrailRenderer>();
     }
     public void DashFrame(float elapsedTime)
     {
@@ -56,7 +57,7 @@ public class Dash : Power
         {
             Physics2D.CircleCast(player.transform.position, dashData.endDamageRadius, direction: new Vector2(1, 1), contactFilter2D, results);
             player.playerState = States.OnFoot;
-            lineRenderer.enabled = false;
+            //trailRenderer.emitting = false;
         }
         foreach (var enemy in results)
         {
