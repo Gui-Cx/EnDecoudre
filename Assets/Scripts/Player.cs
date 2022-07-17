@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Roll();
+        playerTransform.position = new Vector2(indexOfPrefab, 0);
         SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }

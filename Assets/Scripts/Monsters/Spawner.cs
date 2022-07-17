@@ -13,6 +13,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] public GameObject Monster2;
     [SerializeField] public GameObject Monster3;
 
+    public static event Action wavesFinish;
+
     int nbFinishSpawn; //spawn fini 
     int indexWave; //vague actuelle
 
@@ -41,9 +43,10 @@ public class Spawner : MonoBehaviour
             indexWave += 1;
             if (indexWave >= waves.Length)
             {
-                //signal d'ouvrir la porte 
-                print("QUIGRY8RQEO");
+                wavesFinish?.Invoke();
+
                 SoundAssets.instance.PlayOpenDoor();
+
             }
             else
             {
@@ -54,7 +57,9 @@ public class Spawner : MonoBehaviour
                     if (indexWave >= waves.Length)
                     {
                         //signal d'ouvrir la porte 
-                        print("QUIGRY8RQEO");
+                        wavesFinish?.Invoke();
+                        SoundAssets.instance.PlayOpenDoor();
+
                     }
                     else
                     {
