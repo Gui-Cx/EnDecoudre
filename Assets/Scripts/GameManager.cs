@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private Player playerOne;
     private Player playerTwo;
-
+    private UImanager uiManager;
     int playersAreDead;
 
     #region Singleton
@@ -40,10 +40,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         State = GameState.Start;
-        Player[] players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
-        playerOne = players[0];
-        playerTwo = players[1];
+        uiManager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
         SoundAssets.instance.PlayStartMusic();
+        Player[] players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
+
+        //playerOne = players[0];
+        //playerTwo = players[1];
     }
 
     public void UpdateGameState(GameState _state)
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 SoundAssets.instance.PlayGameOverMusic();
+                uiManager.TriggerGameOver(true);
                 break;
         }
     }

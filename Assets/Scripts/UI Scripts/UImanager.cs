@@ -19,23 +19,25 @@ public class UImanager : MonoBehaviour
     
     public void SwapSkill(Power power, Player player) {
 
+        int fixedCurrentFace = player.currentFace+1;
+
         switch(player.getIndexOfPrefab()) {
             case 0:
             playerOneSkill.sprite = power._powerData.sprite;
-            playerOneSkill.fillAmount = power.totalCharges;
-            playerOneDiceface.text = player.currentFace.ToString();
+            playerOneSkill.fillAmount = 1;  
+            playerOneDiceface.text = fixedCurrentFace.ToString();
             break;
             case 1:
             playerTwoSkill.sprite = power._powerData.sprite;
-            playerTwoSkill.fillAmount = power.totalCharges;
-            playerTwoDiceface.text = player.currentFace.ToString();
+            playerTwoSkill.fillAmount = 1;
+            playerTwoDiceface.text = fixedCurrentFace.ToString();
             break;
         }
     }
 
     public void UpdateShotCount(Power currentPower, Player player) {
 
-        float amount = currentPower.currentCharges / currentPower.totalCharges;
+        float amount = (float) currentPower.currentCharges / (float) currentPower.totalCharges;
         switch(player.getIndexOfPrefab()) {
             case 0:
             playerOneSkill.fillAmount = amount;
@@ -48,7 +50,7 @@ public class UImanager : MonoBehaviour
 
     public void UpdatePlayerLife(Player player) {
 
-        float amount = player.hp / player.maxHP;
+        float amount = (float) player.hp / (float) player.maxHP;
 
         switch (player.getIndexOfPrefab()) {
             case 0:
@@ -61,7 +63,8 @@ public class UImanager : MonoBehaviour
     }
 
     public void StartGame() {
-        anim.SetTrigger("IsStarted"); 
+        anim.SetTrigger("IsStarted");
+        GameManager.Instance.UpdateGameState(GameManager.GameState.InGame);
     }
 
     public void TriggerMainMenu(bool status) {
@@ -69,7 +72,6 @@ public class UImanager : MonoBehaviour
             anim.SetTrigger("MainMenuOpen");
         } else {
             anim.SetTrigger("MainMenuClose");
-            GameManager.Instance.UpdateGameState(GameManager.GameState.InGame);
         }
     }
 

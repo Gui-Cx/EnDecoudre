@@ -18,13 +18,16 @@ public class Monster : MonoBehaviour
     public Spawn spawn;
     public enum MonsterStates { Hiting,Reaching,Fleeing }
     bool isInvuln;
+    protected bool canAttack;
     protected MonsterStates monsterState;
     private Player player; //cible
+
     void Start()
     {
         monsterState = MonsterStates.Reaching;
         players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
         isInvuln = false;
+        canAttack = true;
     }
 
     public void loseHP(int value)
@@ -98,6 +101,10 @@ public class Monster : MonoBehaviour
             minDistance = distance[1];
             cible = players[1];
         }
+        if (minDistance > 30)
+        {
+            return;
+        }
         if (minDistance > distanceAttack)
         {
             monsterState = MonsterStates.Reaching;
@@ -112,7 +119,11 @@ public class Monster : MonoBehaviour
             if (monsterState!= MonsterStates.Hiting)
             {
                 monsterState = MonsterStates.Hiting;
-                StartCoroutine(doAttack(cible));
+                if (canAttack)
+                {
+                    StartCoroutine(doAttack(cible));
+                }
+                
             }
 
         }

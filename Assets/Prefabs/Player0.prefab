@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31236b0dbc47d2548bc82da163f3b15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  maxHP: 0
+  hp: 150
+  maxHP: 150
   availablePowers: 
   indexOfPrefab: 0
   playerState: 0

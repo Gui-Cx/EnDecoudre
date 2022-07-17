@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80836d67b9af364d86de91bacec6861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawners: []
-  spawningObjects: []
+  spawns: []
+  waves: []
+  Monster1: {fileID: 7443522285807497800, guid: 3491bcc918b16c84090129e7d12badad, type: 3}
+  Monster2: {fileID: 6426432873705988832, guid: 70aa93fa20cfe6545a15deb156d28b16, type: 3}
+  Monster3: {fileID: 1146836346498855559, guid: a50263ac10e4ff64b9c4493814a58622, type: 3}
+  doors: []

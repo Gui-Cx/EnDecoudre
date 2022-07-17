@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     private System.Random rnd = new System.Random();
 
+    public bool isDead = false;
 
     [SerializeField] int indexOfPrefab;
     private int indexOfFace;
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Transform playerTransform;
     Animator anim;
+    
+    UImanager _uimanager;
     private Rigidbody2D rb;
 
     bool canFire;
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        _uimanager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
         playerState = States.OnFoot;
         anim = this.GetComponent<Animator>();
         detection = gameObject.GetComponent<CircleCollider2D>();
@@ -59,6 +63,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         Roll();
+        _uimanager.SwapSkill(currentPower, this);
+        _uimanager.UpdateShotCount(currentPower, this);
         playerTransform.position = new Vector2(indexOfPrefab, 0);
         SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
@@ -71,18 +77,37 @@ public class Player : MonoBehaviour
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
-        if (playerState == States.OnFoot)
+       if (playerState == States.OnFoot)
         {
             playerState = States.Waiting;
             anim.SetBool("onWait", true);
             playerMovement.setSpeed(0);
+            StartCoroutine(ReviveCoroutine());
         }
         if (context.canceled)
         {
             playerState = States.OnFoot;
             anim.SetBool("onWait", false);
-            playerMovement.setSpeed(playerMovement.maxSpeed);
+            if (!isDead) {
+                playerMovement.setSpeed(playerMovement.maxSpeed); 
+            }
         }
+    }
+
+    private IEnumerator ReviveCoroutine()
+    {
+        Collider2D[] colliders = new Collider2D[10];
+        var tempNumber = this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders);
+        Collider2D temp = colliders.FirstOrDefault(x => x!=null && x.CompareTag("Player"));
+        
+        if ( tempNumber > 0 && temp != null && temp.gameObject.GetComponent<Player>() is Player otherPlayer)
+        {
+            if (otherPlayer.isDead)
+            {
+                otherPlayer.Revive();
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
     }
 
     private void Update()
@@ -104,8 +129,8 @@ public class Player : MonoBehaviour
 
     public void Roll()
     {
-        //currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
-        currentFace = (int)PowerEnum.Sword;
+        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        //currentFace = (int)PowerEnum.Machinegun;
 
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
@@ -118,9 +143,9 @@ public class Player : MonoBehaviour
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
-        this.GetComponent<BoxCollider2D>().isTrigger = true;
+        //this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
-        // faut lancer ROLL pour que �a change la valeur de indexOfFace
+        // faut lancer ROLL pour que sa change la valeur de indexOfFace
         Roll();
         Debug.LogFormat("index of Face = {0}", indexOfFace);
         while (animation < duration)
@@ -134,29 +159,33 @@ public class Player : MonoBehaviour
                 break;
             }
             anim.SetInteger("indexOfFace", indexOfFace);
-            //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
+            //lancer l'aleatoire entre 1 et 6 avec powers ? en gros tenir a jour une valeur int faceValue pour que des l'atterissage on soit dans la bonne animation
             yield return null;
         }
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
-        this.GetComponent<BoxCollider2D>().isTrigger = false;
+        //this.GetComponent<BoxCollider2D>().isTrigger = false;
+        _uimanager.SwapSkill(currentPower, this);
         anim.SetBool("onFly", false);
         yield return null;
     }
 
     public void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead)
         {
-            if (currentPower != null && currentPower.currentCharges > 0 && canFire)
+            if (context.performed)
             {
-                StartCoroutine(CooldownAttack());
-                currentPower.currentCharges--;
-                currentPower.ActivateOnce(this);
+                if (currentPower != null && currentPower.currentCharges > 0 && canFire)
+                {
+                    StartCoroutine(CooldownAttack());
+                    currentPower.currentCharges--;
+                    currentPower.ActivateOnce(this);
+                    _uimanager.UpdateShotCount(currentPower, this);
+                }
             }
         }
-
     }
 
     private IEnumerator CooldownAttack()
@@ -169,8 +198,23 @@ public class Player : MonoBehaviour
 
     private void die()
     {
+        GameManager.Instance.HandlePLayerDied();
         SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
+
+        playerMovement.setSpeed(0);
+        playerMovement.SetInput(0, 0);
+        isDead = true;
         Debug.Log("{0} died");
+    }
+
+    public void Revive()
+    {
+        hp = maxHP;
+        isDead = false;
+        playerMovement.setSpeed(playerMovement.maxSpeed);
+        float[] direction = playerMovement.getDirection();
+        StartCoroutine(Fly(new Vector2(playerTransform.position.x, playerTransform.position.y), new Vector2(playerTransform.position.x + direction[0] * 5, playerTransform.position.y + direction[1] * 2)));
+        GameManager.Instance.HandlePlayerResurect();
     }
 
     public void takeDamage(int value)
@@ -178,9 +222,11 @@ public class Player : MonoBehaviour
         hp -= value;
         SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
         Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
+        _uimanager.UpdatePlayerLife(this);
         if( hp <= 0)
         {
             die();
+            hp = 0;
         }
     }
 

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalCharges: 6
   cooldown: 30
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a352c8c112e6de247a7e1faa77c91f37, type: 3}
   spread: 31
   bulletPerCharge: 32
   damagePerBullet: 33
+  bulletPrefab: {fileID: 1212286309019803801, guid: 95e5031b308de9a4a8ee7d6096989afe, type: 3}
