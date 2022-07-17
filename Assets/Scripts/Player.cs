@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     private System.Random rnd = new System.Random();
 
+    public bool isDead = false;
 
     [SerializeField] int indexOfPrefab;
     private int indexOfFace;
@@ -71,11 +72,12 @@ public class Player : MonoBehaviour
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
-        if (playerState == States.OnFoot)
+       if (playerState == States.OnFoot)
         {
             playerState = States.Waiting;
             anim.SetBool("onWait", true);
             playerMovement.setSpeed(0);
+            StartCoroutine(ReviveCoroutine());
         }
         if (context.canceled)
         {
@@ -83,6 +85,22 @@ public class Player : MonoBehaviour
             anim.SetBool("onWait", false);
             playerMovement.setSpeed(playerMovement.maxSpeed);
         }
+    }
+
+    private IEnumerator ReviveCoroutine()
+    {
+        Collider2D[] colliders = new Collider2D[10];
+        var tempNumber = this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders);
+        Collider2D temp = colliders.FirstOrDefault(x => x.CompareTag("Player"));
+        
+        if ( tempNumber > 0 && temp != null && temp.gameObject.GetComponent<Player>() is Player otherPlayer)
+        {
+            if (otherPlayer.isDead)
+            {
+                otherPlayer.Revive();
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
     }
 
     private void Update()
@@ -147,16 +165,18 @@ public class Player : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead)
         {
-            if (currentPower != null && currentPower.currentCharges > 0 && canFire)
+            if (context.performed)
             {
-                StartCoroutine(CooldownAttack());
-                currentPower.currentCharges--;
-                currentPower.ActivateOnce(this);
+                if (currentPower != null && currentPower.currentCharges > 0 && canFire)
+                {
+                    StartCoroutine(CooldownAttack());
+                    currentPower.currentCharges--;
+                    currentPower.ActivateOnce(this);
+                }
             }
         }
-
     }
 
     private IEnumerator CooldownAttack()
@@ -169,8 +189,23 @@ public class Player : MonoBehaviour
 
     private void die()
     {
+        GameManager.Instance.HandlePLayerDied();
         SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
+
+        playerMovement.setSpeed(0);
+        playerMovement.SetInput(0, 0);
+        isDead = true;
         Debug.Log("{0} died");
+    }
+
+    public void Revive()
+    {
+        hp = maxHP;
+        isDead = false;
+        playerMovement.setSpeed(playerMovement.maxSpeed);
+        float[] direction = playerMovement.getDirection();
+        StartCoroutine(Fly(new Vector2(playerTransform.position.x, playerTransform.position.y), new Vector2(playerTransform.position.x + direction[0] * 5, playerTransform.position.y + direction[1] * 2)));
+        GameManager.Instance.HandlePlayerResurect();
     }
 
     public void takeDamage(int value)
