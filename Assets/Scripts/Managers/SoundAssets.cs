@@ -70,6 +70,12 @@ public class SoundAssets : MonoBehaviour
             }
         }
     }
+
+    public void PlayBoomerang()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.WooshBoomerang);
+    }
+
     public void PlayPlayerDieSound(int player)
     {
         int soundToPlay = Random.Range(0, 3);
