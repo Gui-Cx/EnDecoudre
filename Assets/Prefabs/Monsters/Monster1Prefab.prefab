@@ -134,7 +134,7 @@ MonoBehaviour:
   maxHealth: 0
   speed: 0.5
   cooldown: 3
-  distanceAttack: 0.3
+  distanceAttack: 1
   distanceDecay: 0
   degat: 10
   spawn: {fileID: 0}
