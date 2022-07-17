@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1078596871, guid: 9d99970d88ec2b84ea135153b121d9d2, type: 3}
+  m_Color: {r: 0.6924528, g: 1, b: 0.9969852, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   availablePowers: 
   indexOfPrefab: 0
   playerTransform: {fileID: 0}
+  currentFace: 1
   listPowerPrefabs:
   - {fileID: 11400000, guid: 971dd6dce314f6342b506adc7a4ad9f3, type: 2}
   - {fileID: 11400000, guid: 3ede9813d08580f43a49e8a577c25295, type: 2}
@@ -217,7 +218,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: -7531146998842412775}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Yeet
         m_Mode: 0
@@ -284,18 +285,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0033323765, y: -0.0066647977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25354624, y: 0.25354603}
   m_EdgeRadius: 0
 --- !u!95 &2671701060850033204
 Animator:
@@ -330,6 +331,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0027043223, y: -0.0062780976}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.18190509
