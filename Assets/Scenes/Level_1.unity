@@ -1247,7 +1247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[222].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[223].second.m_AnimationSpeed
@@ -1638,6 +1638,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[324].second.m_AnimationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[326].second.m_AnimationSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -1959,7 +1963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[412].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[413].second.m_AnimationSpeed
@@ -2007,7 +2011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[424].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 430213672139934098, guid: 353fb0c7c6037ce49acd28ba05f71f60, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[425].second.m_AnimationSpeed
@@ -4160,10 +4164,19 @@ MonoBehaviour:
   - {fileID: 1428542712}
   - {fileID: 180994631}
   - {fileID: 514102806}
-  waves: []
-  Monster1: {fileID: 0}
-  Monster2: {fileID: 0}
-  Monster3: {fileID: 0}
+  waves:
+  - nbMonster1: 0
+    nbMonster2: 3
+    nbMonster3: 0
+  - nbMonster1: 5
+    nbMonster2: 3
+    nbMonster3: 0
+  - nbMonster1: 6
+    nbMonster2: 7
+    nbMonster3: 0
+  Monster1: {fileID: 7443522285807497800, guid: 3491bcc918b16c84090129e7d12badad, type: 3}
+  Monster2: {fileID: 6426432873705988832, guid: 70aa93fa20cfe6545a15deb156d28b16, type: 3}
+  Monster3: {fileID: 1146836346498855559, guid: a50263ac10e4ff64b9c4493814a58622, type: 3}
   doors:
   - {fileID: 464141977}
   - {fileID: 737551446}
@@ -4296,10 +4309,19 @@ MonoBehaviour:
   - {fileID: 1427199069}
   - {fileID: 1405675050}
   - {fileID: 1523557639}
-  waves: []
-  Monster1: {fileID: 0}
-  Monster2: {fileID: 0}
-  Monster3: {fileID: 0}
+  waves:
+  - nbMonster1: 0
+    nbMonster2: 0
+    nbMonster3: 3
+  - nbMonster1: 6
+    nbMonster2: 0
+    nbMonster3: 6
+  - nbMonster1: 6
+    nbMonster2: 3
+    nbMonster3: 6
+  Monster1: {fileID: 7443522285807497800, guid: 3491bcc918b16c84090129e7d12badad, type: 3}
+  Monster2: {fileID: 6426432873705988832, guid: 70aa93fa20cfe6545a15deb156d28b16, type: 3}
+  Monster3: {fileID: 1146836346498855559, guid: a50263ac10e4ff64b9c4493814a58622, type: 3}
   doors:
   - {fileID: 1026184729}
   - {fileID: 1189383061}
@@ -4478,10 +4500,25 @@ MonoBehaviour:
   - {fileID: 597995388}
   - {fileID: 1404782257}
   - {fileID: 1190407366}
-  waves: []
-  Monster1: {fileID: 0}
-  Monster2: {fileID: 0}
-  Monster3: {fileID: 0}
+  waves:
+  - nbMonster1: 5
+    nbMonster2: 5
+    nbMonster3: 0
+  - nbMonster1: 10
+    nbMonster2: 3
+    nbMonster3: 3
+  - nbMonster1: 20
+    nbMonster2: 0
+    nbMonster3: 10
+  - nbMonster1: 0
+    nbMonster2: 15
+    nbMonster3: 0
+  - nbMonster1: 13
+    nbMonster2: 8
+    nbMonster3: 20
+  Monster1: {fileID: 7443522285807497800, guid: 3491bcc918b16c84090129e7d12badad, type: 3}
+  Monster2: {fileID: 6426432873705988832, guid: 70aa93fa20cfe6545a15deb156d28b16, type: 3}
+  Monster3: {fileID: 1146836346498855559, guid: a50263ac10e4ff64b9c4493814a58622, type: 3}
   doors: []
 --- !u!4 &1115398002
 Transform:
@@ -4962,10 +4999,19 @@ MonoBehaviour:
   - {fileID: 1309337766}
   - {fileID: 896729233}
   - {fileID: 1902917386}
-  waves: []
-  Monster1: {fileID: 0}
-  Monster2: {fileID: 0}
-  Monster3: {fileID: 0}
+  waves:
+  - nbMonster1: 3
+    nbMonster2: 0
+    nbMonster3: 0
+  - nbMonster1: 5
+    nbMonster2: 0
+    nbMonster3: 0
+  - nbMonster1: 8
+    nbMonster2: 0
+    nbMonster3: 0
+  Monster1: {fileID: 7443522285807497800, guid: 3491bcc918b16c84090129e7d12badad, type: 3}
+  Monster2: {fileID: 6426432873705988832, guid: 70aa93fa20cfe6545a15deb156d28b16, type: 3}
+  Monster3: {fileID: 1146836346498855559, guid: a50263ac10e4ff64b9c4493814a58622, type: 3}
   doors:
   - {fileID: 377879975}
   - {fileID: 2045806180}

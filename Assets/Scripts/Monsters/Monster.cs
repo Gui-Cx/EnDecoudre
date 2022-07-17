@@ -17,27 +17,40 @@ public class Monster : MonoBehaviour
     Player[] players;
     public Spawn spawn;
     public enum MonsterStates { Hiting,Reaching,Fleeing }
-
+    bool isInvuln;
     protected MonsterStates monsterState;
     private Player player; //cible
     void Start()
     {
         monsterState = MonsterStates.Reaching;
         players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
+        isInvuln = false;
     }
 
     public void loseHP(int value)
 
     {
-        currentHealth -= value;
-        Debug.LogFormat("Cx : Enemy {0} lost {1} HP", gameObject.name, value);
-        if (currentHealth <= 0)
+        if (!isInvuln)
         {
-            spawn.Decompt();
-            Destroy(this.gameObject);
+            StartCoroutine(waitInvuln());
+            currentHealth -= value;
+            Debug.LogFormat("Cx : Enemy {0} lost {1} HP", gameObject.name, value);
+            if (currentHealth <= 0)
+            {
+                spawn.Decompt();
+                Destroy(this.gameObject);
+            }
         }
+
     }
 
+    private IEnumerator waitInvuln()
+    {
+        isInvuln = true;
+        yield return new WaitForSeconds(1);
+        isInvuln = false;
+        yield return null;
+    }
     private void reach(Player player)
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed*Time.deltaTime);
