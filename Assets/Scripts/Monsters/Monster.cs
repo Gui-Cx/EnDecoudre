@@ -101,6 +101,10 @@ public class Monster : MonoBehaviour
             minDistance = distance[1];
             cible = players[1];
         }
+        if (minDistance > 30)
+        {
+            return;
+        }
         if (minDistance > distanceAttack)
         {
             monsterState = MonsterStates.Reaching;
@@ -112,16 +116,11 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            if (monsterState!= MonsterStates.Hiting)
+            monsterState = MonsterStates.Hiting;
+            if (canAttack)
             {
-                monsterState = MonsterStates.Hiting;
-                if (canAttack)
-                {
-                    StartCoroutine(doAttack(cible));
-                }
-                
+                StartCoroutine(doAttack(cible));
             }
-
         }
 
         

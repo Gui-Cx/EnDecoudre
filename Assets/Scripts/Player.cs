@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Transform playerTransform;
     Animator anim;
+    
+    UImanager _uimanager;
     private Rigidbody2D rb;
 
     bool canFire;
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        _uimanager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
         playerState = States.OnFoot;
         anim = this.GetComponent<Animator>();
         detection = gameObject.GetComponent<CircleCollider2D>();
@@ -66,6 +69,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         Roll();
+        _uimanager.SwapSkill(currentPower, this);
+        _uimanager.UpdateShotCount(currentPower, this);
         playerTransform.position = new Vector2(indexOfPrefab, 0);
         SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
@@ -146,7 +151,7 @@ public class Player : MonoBehaviour
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
-        this.GetComponent<BoxCollider2D>().isTrigger = true;
+        //this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
@@ -168,7 +173,8 @@ public class Player : MonoBehaviour
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
-        this.GetComponent<BoxCollider2D>().isTrigger = false;
+        //this.GetComponent<BoxCollider2D>().isTrigger = false;
+        _uimanager.SwapSkill(currentPower, this);
         anim.SetBool("onFly", false);
         yield return null;
     }
@@ -185,6 +191,7 @@ public class Player : MonoBehaviour
                     StartCoroutine(CooldownAttack());
                     currentPower.currentCharges--;
                     currentPower.ActivateOnce(this);
+                    _uimanager.UpdateShotCount(currentPower, this);
                 }
             }
         }
@@ -227,9 +234,11 @@ public class Player : MonoBehaviour
         hp -= value;
         SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
         Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
+        _uimanager.UpdatePlayerLife(this);
         if( hp <= 0)
         {
             die();
+            hp = 0;
         }
     }
 

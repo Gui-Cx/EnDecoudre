@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acba5382a43d5744f896dc6fd4fbdb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  speed: 15
+  damage: 5
+  speed: 10
 --- !u!95 &8489900963180544773
 Animator:
   serializedVersion: 4
@@ -131,7 +131,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0007054508, y: -0.009170428}

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
-  - UIManager
+  - UImanager
+  - Box
   layers:
   - Default
   - TransparentFX

@@ -59,11 +59,14 @@ public class Dash : Power
             player.playerState = States.OnFoot;
             //trailRenderer.emitting = false;
         }
-        foreach (var enemy in results)
+        foreach (var entitiesHit in results)
         {
-            if (enemy.collider.gameObject.tag.Equals("Monster"))
+            if (entitiesHit.collider.gameObject.tag.Equals("Monster"))
             {
-                enemy.collider.GetComponent<Monster>()?.loseHP((elapsedTime < dashData.duration) ? dashData.movingDamage : dashData.endDamage );
+                entitiesHit.collider.GetComponent<Monster>()?.loseHP((elapsedTime < dashData.duration) ? dashData.movingDamage : dashData.endDamage );
+            } else if (entitiesHit.collider.tag == "Box")
+            {
+                entitiesHit.collider.GetComponent<DestructibleBox>().DestroyBox();
             }
         }
     }
