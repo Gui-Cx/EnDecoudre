@@ -126,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float[] getDirection()
     {
-        return new float[] { inputXTmp, inputYTmp };
+        return new float[] {inputXTmp, inputYTmp };
+
     }
 
     public void setSpeed(float value)
