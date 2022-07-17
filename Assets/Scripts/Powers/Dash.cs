@@ -33,6 +33,7 @@ public class Dash : Power
         player.playerState = States.Dashing;
         //trailRenderer.emitting = true;
         playerMovement.InitDashMovement(this);
+
     }
     public Dash(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
