@@ -43,8 +43,10 @@ public class Spawner : MonoBehaviour
             indexWave += 1;
             if (indexWave >= waves.Length)
             {
-                //signal d'ouvrir la porte 
                 wavesFinish?.Invoke();
+
+                SoundAssets.instance.PlayOpenDoor();
+
             }
             else
             {
@@ -56,6 +58,8 @@ public class Spawner : MonoBehaviour
                     {
                         //signal d'ouvrir la porte 
                         wavesFinish?.Invoke();
+                        SoundAssets.instance.PlayOpenDoor();
+
                     }
                     else
                     {
