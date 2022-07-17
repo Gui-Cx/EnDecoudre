@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 {
     enum States { onFoot, onFly, onWait }
     public int hp;
+    [SerializeField] int maxHP;
 
     public Power currentPower;
 
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-
+        hp = maxHP;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
