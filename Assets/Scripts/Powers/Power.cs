@@ -4,10 +4,12 @@ using UnityEngine;
 
 public enum PowerEnum
 {
-    Nova,
-    Dash,
-    Boomerang,
-    Sword
+    Nova = 0,
+    Shotgun = 1,
+    Boomerang = 2,
+    Dash = 3,
+    Sword = 4,
+    Machinegun = 5
 }
 
 public abstract class Power
@@ -20,49 +22,59 @@ public abstract class Power
     /// <summary>
     /// The total number of uses at the start for this power;
     /// </summary>
-    public abstract int totalCharges { get; set; }
+    public int totalCharges;
 
     /// <summary>
-    /// The method called when the power must discard one use
+    /// The time between two attacks 
     /// </summary>
-    // public void Activate(){
-    //     if (currentCharges > 0){
-    //         currentCharges--;
-    //         ActivateOnce();
-    //     } else {
-    //         Debug.LogFormat("Cx : No more ammunition");
-    //         //An animation where the player to show the player does not have enough charges
-    //     }
-    // }
+    public float cooldown;
+    
 
     public abstract void ActivateOnce(Player player);
 
-    public static Power GetPower(PowerEnum powerName)
+    public static Power GetPower(PowerEnum powerName, List<PowerData> listPowerData)
     {
         Power power;
+        PowerData powerData;
+        int index = (int) powerName;
         switch (powerName)
         {
             case PowerEnum.Nova:
-                power = new Nova();
+                powerData = listPowerData[index];
+                power = new Nova(powerData);
                 break;
-            case PowerEnum.Dash:
-                power = new Dash();
+            case PowerEnum.Shotgun:
+                powerData = listPowerData[index];
+                power = new Shotgun(powerData);
                 break;
             case PowerEnum.Boomerang:
-                power = new Boomerang();
+                powerData = listPowerData[index];
+                power = new Boomerang(powerData);
+                break;
+            case PowerEnum.Dash:
+                powerData = listPowerData[index];
+                power = new Dash(powerData);
                 break;
             case PowerEnum.Sword:
-                power = new Sword();
+                powerData = listPowerData[index];
+                power = new Sword(powerData);
+                break;
+            case PowerEnum.Machinegun:
+                powerData = listPowerData[index];
+                power = new Machinegun(powerData);
                 break;
             default:
                 throw new System.NotImplementedException(string.Format("PowerEnum : {0} not recognized", powerName));
         }
         return power;
     }
+    
+    public Power(){}
 
-    public Power()
+    public Power(PowerData powerData)
     {
-        Debug.LogFormat("Cx : Power construit");
-        currentCharges = totalCharges;
+        totalCharges = powerData.totalCharges;
+        currentCharges = powerData.totalCharges;
+        
     }
 }

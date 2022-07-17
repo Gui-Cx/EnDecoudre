@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public Power currentPower;
 
+    [HideInInspector]
     public List<PowerEnum> availablePowers;
 
     private System.Random rnd = new System.Random();
@@ -27,20 +28,28 @@ public class Player : MonoBehaviour
 
     private float duration = 2f;
 
+    public int currentFace;
+
+
+    [SerializeField]
+    public List<PowerData> listPowerPrefabs;
+
     void Awake()
     {
         playerState = States.onFoot;
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-        availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Dash, PowerEnum.Boomerang, PowerEnum.Sword };
-        currentPower = Roll();
+
+        availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
 
 
     void Start()
     {
+        Roll();
+
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
 
@@ -48,7 +57,7 @@ public class Player : MonoBehaviour
     {
         if (playerState == States.onFoot)
         {
-            playerState = States.onWait; 
+            playerState = States.onWait;
             playerMovement.setSpeed(0);
         }
         if (context.canceled)
@@ -60,7 +69,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        print(playerState);
+        //print(playerState);
     }
 
 
@@ -72,8 +81,8 @@ public class Player : MonoBehaviour
             Player[] players = collision.GetComponents<Player>();
             Player otherPlayer = players.First(x => x != this);
             otherPlayer.playerState = States.onFly;
-            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y), 
-                new Vector2(otherPlayer.playerTransform.position.x + direction[0]*5, otherPlayer.playerTransform.position.y+direction[1]*2)));
+            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
+                new Vector2(otherPlayer.playerTransform.position.x + direction[0] * 5, otherPlayer.playerTransform.position.y + direction[1] * 2)));
             playerState = States.onFoot;
 
         }
@@ -91,11 +100,11 @@ public class Player : MonoBehaviour
     }
 
 
-    private Power Roll()
+    public void Roll()
     {
-        int val = rnd.Next(0, availablePowers.Count-1); //Next(int x, int y) returns a value between x and y, both included.
-        Power power = Power.GetPower(availablePowers[val]);
-        return power;
+        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
+        currentPower = Power.GetPower(availablePowers[currentFace], listPowerPrefabs);
     }
 
 
@@ -110,6 +119,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         playerState = States.onFoot;
+        Roll();
         yield return null;
     }
 
@@ -119,14 +129,12 @@ public class Player : MonoBehaviour
         {
             if (currentPower != null && currentPower.currentCharges > 0)
             {
-                Debug.LogFormat("Cx : Remaining charges before firing = {0}", currentPower.currentCharges);
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
             else
             {
-                Debug.LogFormat("Cx : Can't shoot, choosing new weapon!");
-                currentPower = Roll();
+                Roll();
             }
         }
 

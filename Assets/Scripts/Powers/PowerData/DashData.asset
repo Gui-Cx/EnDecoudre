@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad2ecd8751e5a44c98b5fa7645cfbe8, type: 3}
+  m_Name: DashData
+  m_EditorClassIdentifier: 
+  totalCharges: 4
+  cooldown: 15
+  duration: 16
+  distance: 17
+  movingDamageHeight: 18
+  movingDamageWidth: 19
+  endDamageRadius: 20
+  movingDamage: 21
+  endDamage: 22

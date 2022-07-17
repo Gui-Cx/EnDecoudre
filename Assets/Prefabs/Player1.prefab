@@ -298,6 +298,13 @@ MonoBehaviour:
   availablePowers: 
   indexOfPrefab: 1
   playerTransform: {fileID: 0}
+  listPowerPrefabs:
+  - {fileID: 11400000, guid: 971dd6dce314f6342b506adc7a4ad9f3, type: 2}
+  - {fileID: 11400000, guid: 3ede9813d08580f43a49e8a577c25295, type: 2}
+  - {fileID: 11400000, guid: 6c6fc8164ef637544ad8a3ec318140e4, type: 2}
+  - {fileID: 11400000, guid: 2fe6bc883460df441bdda474c3aa192d, type: 2}
+  - {fileID: 11400000, guid: 7199bfc4c528e6e4293f551efc64fc8d, type: 2}
+  - {fileID: 11400000, guid: 4f5279a887e4c4f49881c0ec2e8531d7, type: 2}
 --- !u!58 &9167767772061163750
 CircleCollider2D:
   m_ObjectHideFlags: 0

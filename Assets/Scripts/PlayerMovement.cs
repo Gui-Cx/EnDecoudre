@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
         isMoving = !(inputX==0 && inputY==0);
-        print(isMoving);
+        //print(isMoving);
         anim.SetBool("isMoving", isMoving);
 
         if (isMoving)
