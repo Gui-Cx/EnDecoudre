@@ -13,7 +13,9 @@ public class BoomerangData : PowerData
     public int duration;
 
     [Tooltip("The damage taken by each enemy hit by the boomerang")]
-    public int damage; 
+    public int damage;
+    public GameObject bulletPrefab;
+
 
     public override string ToString(){
         return string.Format("Boomerang : distance = {0}, duration = {1}, damage = {2}, cooldown = {3}, total charges = {4}", distance, duration, damage, cooldown, totalCharges);

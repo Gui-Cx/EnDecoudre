@@ -116,16 +116,11 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            if (monsterState!= MonsterStates.Hiting)
+            monsterState = MonsterStates.Hiting;
+            if (canAttack)
             {
-                monsterState = MonsterStates.Hiting;
-                if (canAttack)
-                {
-                    StartCoroutine(doAttack(cible));
-                }
-                
+                StartCoroutine(doAttack(cible));
             }
-
         }
 
         

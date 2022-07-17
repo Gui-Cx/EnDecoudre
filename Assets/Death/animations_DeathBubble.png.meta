@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50233dd0af227a343a0202381a5ac272
+guid: 65e95868e9feef94c88b6a0e88d1417a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attacks_boomerang_0
+      name: animations_DeathBubble_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,62 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72cac35bbf7d99947a9640310354842a
-      internalID: -1562789557
+      spriteID: 700a8df193453b747911ae08c1d512a8
+      internalID: 288988565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6931b0ed5a873e746bdc9d2d4a236428
-      internalID: -581164015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attacks_boomerang_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3857bca4c8c7e1b4cb09f1d6391bfaa1
-      internalID: 668129636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attacks_boomerang_3
+      name: animations_DeathBubble_1
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,62 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f37ddd2175714646b6fcf1df11ba4b3
-      internalID: -831964256
+      spriteID: e727b4ca7c4076748b27d664e9c46727
+      internalID: -218972145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4abdd39a38c6a5d4eacdb9534d213735
-      internalID: 1335958869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attacks_boomerang_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d44a083436c06104ea6d13bb47e2832c
-      internalID: -586039736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attacks_boomerang_6
+      name: animations_DeathBubble_2
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1081980f7f5a4df4686cb65803db0388
-      internalID: -1125873900
+      spriteID: 08d03f8403d7970439fa9c28e7cb6d3a
+      internalID: 958945017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_7
+      name: animations_DeathBubble_3
       rect:
         serializedVersion: 2
-        x: 224
+        x: 288
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,8 +193,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf5397895d8345b4db4bbda90c170db4
-      internalID: 1084876435
+      spriteID: 1236c879b33bc9b458960ef12253ec05
+      internalID: 1902470013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animations_DeathBubble_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87ff08d79cef7d43a66bd8bbf6ac753
+      internalID: 534099185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animations_DeathBubble_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb43ddf989bef0e468a3474ad89135b8
+      internalID: -1048922728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animations_DeathBubble_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d93f6b2a0542f2847968719be5c4f4ae
+      internalID: 1579316804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animations_DeathBubble_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042b6c594c7a910418bb8d383bbb5e75
+      internalID: -899434366
       vertices: []
       indices: 
       edges: []
@@ -294,14 +294,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      attacks_boomerang_6: -1125873900
-      attacks_boomerang_4: 1335958869
-      attacks_boomerang_2: 668129636
-      attacks_boomerang_0: -1562789557
-      attacks_boomerang_1: -581164015
-      attacks_boomerang_3: -831964256
-      attacks_boomerang_5: -586039736
-      attacks_boomerang_7: 1084876435
+      animations_DeathBubble_2: 958945017
+      animations_DeathBubble_5: -1048922728
+      animations_DeathBubble_1: -218972145
+      animations_DeathBubble_6: 1579316804
+      animations_DeathBubble_0: 288988565
+      animations_DeathBubble_7: -899434366
+      animations_DeathBubble_3: 1902470013
+      animations_DeathBubble_4: 534099185
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

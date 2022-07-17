@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private Player playerOne;
     private Player playerTwo;
     private UImanager uiManager;
-    int playersAreDead;
+    int playersAreDead = 2;
 
     #region Singleton
     private static GameManager instance;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50233dd0af227a343a0202381a5ac272
+guid: 2a0cb0f70e260064d99b8573497ab87d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attacks_boomerang_0
+      name: idle_P2Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72cac35bbf7d99947a9640310354842a
-      internalID: -1562789557
+      spriteID: 79db946f87162fc4bb878666e96c57b3
+      internalID: -1359877630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_1
+      name: idle_P2Death_1
       rect:
         serializedVersion: 2
         x: 32
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6931b0ed5a873e746bdc9d2d4a236428
-      internalID: -581164015
+      spriteID: fe4c9c016b857a94f98d85d8ad41562d
+      internalID: 990056300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_2
+      name: idle_P2Death_2
       rect:
         serializedVersion: 2
         x: 64
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3857bca4c8c7e1b4cb09f1d6391bfaa1
-      internalID: 668129636
+      spriteID: f793c7d43bdae99478eea32210e3477b
+      internalID: -1980405862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_3
+      name: idle_P2Death_3
       rect:
         serializedVersion: 2
         x: 96
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f37ddd2175714646b6fcf1df11ba4b3
-      internalID: -831964256
+      spriteID: 2f8a0f8409752fd4ea25832811237e45
+      internalID: -747947619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_4
+      name: idle_P2Death_4
       rect:
         serializedVersion: 2
         x: 128
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4abdd39a38c6a5d4eacdb9534d213735
-      internalID: 1335958869
+      spriteID: 077b5852cf7a1c8409287f68546f5dce
+      internalID: 1348682137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_5
+      name: idle_P2Death_5
       rect:
         serializedVersion: 2
         x: 160
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d44a083436c06104ea6d13bb47e2832c
-      internalID: -586039736
+      spriteID: 4df9bb0f546360b4ab4a909bc058a45c
+      internalID: -338130489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_6
+      name: idle_P2Death_6
       rect:
         serializedVersion: 2
         x: 192
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1081980f7f5a4df4686cb65803db0388
-      internalID: -1125873900
+      spriteID: 94eb324f98c1ca8499e095d005c0992e
+      internalID: 1301749953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attacks_boomerang_7
+      name: idle_P2Death_7
       rect:
         serializedVersion: 2
         x: 224
@@ -277,8 +277,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf5397895d8345b4db4bbda90c170db4
-      internalID: 1084876435
+      spriteID: dedb80f4538c4a94f9e3d7f543497a7b
+      internalID: 2104017475
       vertices: []
       indices: 
       edges: []
@@ -294,14 +294,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      attacks_boomerang_6: -1125873900
-      attacks_boomerang_4: 1335958869
-      attacks_boomerang_2: 668129636
-      attacks_boomerang_0: -1562789557
-      attacks_boomerang_1: -581164015
-      attacks_boomerang_3: -831964256
-      attacks_boomerang_5: -586039736
-      attacks_boomerang_7: 1084876435
+      idle_P2Death_7: 2104017475
+      idle_P2Death_0: -1359877630
+      idle_P2Death_3: -747947619
+      idle_P2Death_4: 1348682137
+      idle_P2Death_2: -1980405862
+      idle_P2Death_5: -338130489
+      idle_P2Death_6: 1301749953
+      idle_P2Death_1: 990056300
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
