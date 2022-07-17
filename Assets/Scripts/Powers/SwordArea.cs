@@ -9,6 +9,6 @@ public class SwordArea : MonoBehaviour
     public void Start()
     {
         swordPower = gameObject.GetComponentInParent<Player>().currentPower as Sword;
-        circleCollider.radius = swordPower.novaData.radius;
+        //circleCollider.radius = swordPower.novaData.radius;
     }
 }
