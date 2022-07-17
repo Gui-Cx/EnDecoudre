@@ -11,7 +11,7 @@ public enum States { OnFoot, Flying, Waiting, Dashing }
 public class Player : MonoBehaviour
 {
     public int hp;
-    [SerializeField] int maxHP;
+    [SerializeField] public int maxHP;
 
     public Power currentPower;
 
@@ -24,10 +24,10 @@ public class Player : MonoBehaviour
     [SerializeField] int indexOfPrefab;
     private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
-    public States   playerState;
+    public States playerState;
     private CircleCollider2D detection;
-    private PlayerMovement playerMovement;
-    private Transform playerTransform;
+    public PlayerMovement playerMovement;
+    public Transform playerTransform;
     Animator anim;
 
     private float duration = 2f;
@@ -84,22 +84,6 @@ public class Player : MonoBehaviour
     {
         //print(playerState);
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (playerState == States.Waiting && collision.CompareTag("Player"))
-        {
-            float[] direction = playerMovement.getDirection();
-            Player[] players = collision.GetComponents<Player>();
-            Player otherPlayer = players.First(x => x != this);
-            otherPlayer.playerState = States.Flying;
-            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
-                new Vector2(otherPlayer.playerTransform.position.x + direction[0] * 5, otherPlayer.playerTransform.position.y + direction[1] * 2)));
-            playerState = States.OnFoot;
-
-        }
-    }
         //print(this.GetComponent<PlayerInput>().currentControlScheme);
 
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
@@ -124,11 +108,12 @@ public class Player : MonoBehaviour
     }
 
 
-    private IEnumerator Fly(Vector2 start, Vector2 finish)
+    public IEnumerator Fly(Vector2 start, Vector2 finish)
     {
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
+        this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
@@ -141,10 +126,10 @@ public class Player : MonoBehaviour
             //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }
-        Roll();
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
         anim.SetBool("onFly", false);
         yield return null;
     }

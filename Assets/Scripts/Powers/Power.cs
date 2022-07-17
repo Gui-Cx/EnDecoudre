@@ -29,6 +29,7 @@ public abstract class Power
     /// </summary>
     public float cooldown;
 
+    public PowerData _powerData;
     public Player player;
     
 
@@ -78,6 +79,7 @@ public abstract class Power
         this.player = playerArg;
         totalCharges = powerData.totalCharges;
         currentCharges = powerData.totalCharges;
+        _powerData = powerData;
         
     }
 }

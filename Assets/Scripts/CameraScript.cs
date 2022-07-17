@@ -48,7 +48,7 @@ public class CameraScript : MonoBehaviour
             cam.orthographicSize = distance;
         }
         // You specified to use MoveTowards instead of Slerp
-        cam.transform.position = Vector3.Slerp(cam.transform.position, cameraDestination, followTimeDelta);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, cameraDestination, followTimeDelta);
 
         // Snap when close enough to prevent annoying slerp behavior
         if ((cameraDestination - cam.transform.position).magnitude <= magnitudeDelta)
