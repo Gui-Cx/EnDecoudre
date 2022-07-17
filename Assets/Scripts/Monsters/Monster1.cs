@@ -11,10 +11,15 @@ public class Monster1 : Monster
 
     public override IEnumerator doAttack(Player player)
     {
-        player.takeDamage(degat);
-        yield return new WaitForSeconds(cooldown);
-        monsterState = MonsterStates.Reaching;
-        yield return null;
+        if (canAttack)
+        {
+            canAttack = false;
+            player.takeDamage(degat);
+            yield return new WaitForSeconds(cooldown);
+            monsterState = MonsterStates.Reaching;
+            canAttack = true;
+            yield return null;
+        }
     }
 
 }
