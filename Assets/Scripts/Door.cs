@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public Animator anim;
 
-    private void Awake()
+    public void open()
     {
-        Spawner.wavesFinish += open;
-    }
-    private void OnDestroy()
-    {
-        Spawner.wavesFinish -= open;
-    }
-
-    private void open()
-    {
-        //open
+        anim.SetTrigger("IsOpen");
+        // remove collider
     }
 
 }

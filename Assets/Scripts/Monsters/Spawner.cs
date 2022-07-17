@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] public GameObject Monster1;
     [SerializeField] public GameObject Monster2;
     [SerializeField] public GameObject Monster3;
+    [SerializeField] public GameObject[] doors;
 
     public static event Action wavesFinish;
 
@@ -43,7 +44,9 @@ public class Spawner : MonoBehaviour
             indexWave += 1;
             if (indexWave >= waves.Length)
             {
-                wavesFinish?.Invoke();
+                foreach(GameObject door in doors) {
+                    door.GetComponent<Door>().open();
+                }
 
                 SoundAssets.instance.PlayOpenDoor();
 
@@ -53,11 +56,14 @@ public class Spawner : MonoBehaviour
                 giveMonster();
                 if(waves[indexWave].nbMonster1==0 && waves[indexWave].nbMonster2 == 0 && waves[indexWave].nbMonster1 == 0)
                 {
-                    indexWave++; //la vague était vide
+                    indexWave++; //la vague ï¿½tait vide
                     if (indexWave >= waves.Length)
                     {
                         //signal d'ouvrir la porte 
-                        wavesFinish?.Invoke();
+                        foreach (GameObject door in doors)
+                        {
+                            door.GetComponent<Door>().open();
+                        }
                         SoundAssets.instance.PlayOpenDoor();
 
                     }
