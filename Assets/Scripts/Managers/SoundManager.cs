@@ -28,7 +28,11 @@ public static class SoundManager
         YeetDerminator2,
         YeetDave1,
         YeetDave2,
-        WooshBoomerang
+        WooshBoomerang,
+
+        MainMusic,
+        GameOverMusic,
+        StartMenuMusic
     }
 
     public static void PlaySound(Sound sound, float volume = 1f)
