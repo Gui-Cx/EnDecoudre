@@ -183,7 +183,6 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead)
         {
-            die();
             if (context.performed)
             {
                 if (currentPower != null && currentPower.currentCharges > 0 && canFire)
