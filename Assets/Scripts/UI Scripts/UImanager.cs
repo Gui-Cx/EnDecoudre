@@ -8,8 +8,7 @@ public class UImanager : MonoBehaviour
 {
     public Image playerOneSkill, playerTwoSkill;
     public TextMeshProUGUI playerOneDiceface, playerTwoDiceface;
-    public Image[] playerOneHeart, playerTwoHeart;
-    public Sprite emptyHeart, fullHeart;
+    public Image playerOneLife, playerTwoLife;
 
 
     public void SwapSkill(Sprite skill, int playerIndex, int faceValue) {
@@ -41,31 +40,16 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerLife(int amount, int playerIndex) {
+    public void UpdatePlayerLife(int amount, int maxLife, int playerIndex) {
 
-        if (amount > 3 || amount < 0) {
-            Debug.Log("Wrong amount ! can't have more or less than 3 hp");
-            return;
-        }
+        amount = amount / maxLife;
 
         switch (playerIndex) {
             case 0:
-            for (int i = 0; i < playerOneHeart.Length; i++) {
-                if (i < amount) {
-                    playerOneHeart[i].sprite = fullHeart;
-                } else {
-                    playerOneHeart[i].sprite = emptyHeart;
-                }
-            }
+            playerOneLife.fillAmount = amount;
             break;
             case 1:
-            for (int i = 0; i < playerTwoHeart.Length; i++) {
-                if (i < amount) {
-                    playerTwoHeart[i].sprite = fullHeart;
-                } else {
-                    playerTwoHeart[i].sprite = emptyHeart;
-                }
-            }
+            playerTwoLife.fillAmount = amount;
             break;
         }
     }
