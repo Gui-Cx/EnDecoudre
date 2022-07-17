@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     public bool isDead = false;
 
     [SerializeField] int indexOfPrefab;
+    GameObject deathBubble;
+    GameObject throwBubble;
     private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
     public States playerState;
@@ -50,6 +52,10 @@ public class Player : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        deathBubble = transform.GetChild(1).gameObject;
+        deathBubble.SetActive(false);
+        throwBubble = transform.GetChild(2).gameObject;
+        throwBubble.SetActive(false);
         hp = maxHP;
         canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
@@ -76,6 +82,7 @@ public class Player : MonoBehaviour
         {
             playerState = States.Waiting;
             anim.SetBool("onWait", true);
+            throwBubble.SetActive(true);
             playerMovement.setSpeed(0);
             StartCoroutine(ReviveCoroutine());
         }
@@ -83,6 +90,7 @@ public class Player : MonoBehaviour
         {
             playerState = States.OnFoot;
             anim.SetBool("onWait", false);
+            throwBubble.SetActive(false);
             if (!isDead) {
                 playerMovement.setSpeed(playerMovement.maxSpeed); 
             }
@@ -169,6 +177,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead)
         {
+            die();
             if (context.performed)
             {
                 if (currentPower != null && currentPower.currentCharges > 0 && canFire)
@@ -193,7 +202,8 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.HandlePLayerDied();
         SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
-
+        deathBubble.SetActive(true);
+        anim.SetBool("died", true);
         playerMovement.setSpeed(0);
         playerMovement.SetInput(0, 0);
         isDead = true;
@@ -204,7 +214,9 @@ public class Player : MonoBehaviour
     {
         hp = maxHP;
         isDead = false;
+        deathBubble.SetActive(false);
         playerMovement.setSpeed(playerMovement.maxSpeed);
+        anim.SetBool("died", false);
         float[] direction = playerMovement.getDirection();
         StartCoroutine(Fly(new Vector2(playerTransform.position.x, playerTransform.position.y), new Vector2(playerTransform.position.x + direction[0] * 5, playerTransform.position.y + direction[1] * 2)));
         GameManager.Instance.HandlePlayerResurect();
