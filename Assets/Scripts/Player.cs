@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        print(playerState);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -82,6 +87,7 @@ public class Player : MonoBehaviour
 
         }
     }
+        //print(this.GetComponent<PlayerInput>().currentControlScheme);
 
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
     {
