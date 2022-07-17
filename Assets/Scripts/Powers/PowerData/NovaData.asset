@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalCharges: 1
   cooldown: 4
+  sprite: {fileID: 21300000, guid: b315820383e4fdf4ba50388080f49193, type: 3}
   radius: 4
   damage: 2
   duration: 3
