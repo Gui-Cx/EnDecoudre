@@ -18,4 +18,4 @@ MonoBehaviour:
   spread: 31
   bulletPerCharge: 32
   damagePerBullet: 33
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1212286309019803801, guid: 95e5031b308de9a4a8ee7d6096989afe, type: 3}
