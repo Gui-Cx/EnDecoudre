@@ -21,7 +21,6 @@ public class Nova : Power
     public override void ActivateOnce(Player player){
         Debug.LogFormat("Nova {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, novaData.ToString());
         novaAreaGO = GameObject.Instantiate(novaData.novaAreaPrefab, player.transform);
-        // novaAreaGO.GetComponent<NovaArea>().Init(this);
     }
 
     public Nova(PowerData powerData, Player playerArg) : base (powerData, playerArg){

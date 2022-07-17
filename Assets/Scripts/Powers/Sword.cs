@@ -13,10 +13,14 @@ public class Sword : Power
     /// float cooldown : the time between two attacks 
     /// </summary>
     SwordData swordData;
+    
+    GameObject swordAreaGO;
+
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Attack {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, swordData.ToString());
         SoundAssets.instance.PlaySword();
+        swordAreaGO = GameObject.Instantiate(swordData.swordAreaPrefab, player.transform);
     }
 
     public Sword(PowerData powerData, Player playerArg) : base(powerData, playerArg)
