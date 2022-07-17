@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
             }
             anim.SetFloat("inputX", inputX);
             anim.SetFloat("inputY", inputY);
+            Debug.Log("isMoving");
             inputXTmp = inputX;
             inputYTmp = inputY;
         }
