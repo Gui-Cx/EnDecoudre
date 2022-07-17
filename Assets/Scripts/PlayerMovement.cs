@@ -53,10 +53,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (!onFly)
-            {
-                SoundAssets.instance.PlayFootstep();
-            }
             anim.SetFloat("inputX", inputX);
             anim.SetFloat("inputY", inputY);
             //Debug.Log("isMoving");
@@ -130,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float[] getDirection()
     {
-        return new float[] { inputXTmp, inputYTmp };
+        return new float[] {inputXTmp, inputYTmp };
+
     }
 
     public void setSpeed(float value)

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: CornerTopLeft_1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -1030350577, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: -2144917855, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: -221282511, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: 1374266683, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: 296316770, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: 1422496566, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: -583469362, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  - {fileID: -1426125656, guid: 5ba90987e13a3554ab985a28da23b0e7, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

@@ -102,6 +102,6 @@ MonoBehaviour:
   minSizeY: 2
   zoomFactor: 1.5
   followTimeDelta: 0.8
-  distMin: 2
-  distMax: 6
-  magnitudeDelta: 0.1
+  distMin: 2.5
+  distMax: 4
+  magnitudeDelta: 0.5

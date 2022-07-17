@@ -11,7 +11,7 @@ public enum States { OnFoot, Flying, Waiting, Dashing }
 public class Player : MonoBehaviour
 {
     public int hp;
-    [SerializeField] int maxHP;
+    [SerializeField] public int maxHP;
 
     public Power currentPower;
 
@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
     [SerializeField] int indexOfPrefab;
     private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
-    public States   playerState;
+    public States playerState;
     private CircleCollider2D detection;
-    private PlayerMovement playerMovement;
-    private Transform playerTransform;
+    public PlayerMovement playerMovement;
+    public Transform playerTransform;
     Animator anim;
+
+    bool canFire;
 
     private float duration = 2f;
 
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
         hp = maxHP;
+        canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
@@ -84,22 +87,6 @@ public class Player : MonoBehaviour
     {
         //print(playerState);
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (playerState == States.Waiting && collision.CompareTag("Player"))
-        {
-            float[] direction = playerMovement.getDirection();
-            Player[] players = collision.GetComponents<Player>();
-            Player otherPlayer = players.First(x => x != this);
-            otherPlayer.playerState = States.Flying;
-            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
-                new Vector2(otherPlayer.playerTransform.position.x + direction[0] * 5, otherPlayer.playerTransform.position.y + direction[1] * 2)));
-            playerState = States.OnFoot;
-
-        }
-    }
         //print(this.GetComponent<PlayerInput>().currentControlScheme);
 
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
@@ -117,17 +104,19 @@ public class Player : MonoBehaviour
     {
         currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
 
+
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
         indexOfFace = currentFace +1;
     }
 
 
-    private IEnumerator Fly(Vector2 start, Vector2 finish)
+    public IEnumerator Fly(Vector2 start, Vector2 finish)
     {
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
+        this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
@@ -140,10 +129,10 @@ public class Player : MonoBehaviour
             //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }
-        Roll();
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
         anim.SetBool("onFly", false);
         yield return null;
     }
@@ -152,8 +141,9 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            if (currentPower != null && currentPower.currentCharges > 0)
+            if (currentPower != null && currentPower.currentCharges > 0 && canFire)
             {
+                StartCoroutine(CooldownAttack());
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
@@ -161,6 +151,13 @@ public class Player : MonoBehaviour
 
     }
 
+    private IEnumerator CooldownAttack()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(2);
+        canFire = true;
+        yield return null;
+    }
 
     private void die()
     {
