@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 {
     enum States { onFoot, onFly, onWait }
     public int hp;
-    [SerializeField] int maxHP;
+    [SerializeField] public int maxHP;
 
     public Power currentPower;
 

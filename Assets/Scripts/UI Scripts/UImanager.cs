@@ -16,8 +16,7 @@ public class UImanager : MonoBehaviour
     void Awake() {
         anim = canvas.GetComponent<Animator>();
     }
-
-
+    
     public void SwapSkill(Power power, Player player) {
 
         switch(player.getIndexOfPrefab()) {
@@ -47,9 +46,9 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerLife(int amount, int maxLife, Player player) {
+    public void UpdatePlayerLife(Player player) {
 
-        amount = amount / amount;
+        float amount = player.hp / player.maxHP;
 
         switch (player.getIndexOfPrefab()) {
             case 0:
