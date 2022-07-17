@@ -41,8 +41,8 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.Start;
         Player[] players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
-        playerOne = players[0];
-        playerTwo = players[1];
+        //playerOne = players[0];
+        //playerTwo = players[1];
         SoundAssets.instance.PlayStartMusic();
     }
 

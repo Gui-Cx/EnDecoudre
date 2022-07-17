@@ -50,7 +50,7 @@ public class UImanager : MonoBehaviour
 
     public void UpdatePlayerLife(Player player) {
 
-        float amount = player.hp / player.maxHP;
+        float amount = (float) player.hp / (float) player.maxHP;
 
         switch (player.getIndexOfPrefab()) {
             case 0:
