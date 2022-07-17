@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         State = GameState.Start;
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UImanager>();
+        uiManager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
         SoundAssets.instance.PlayStartMusic();
         Player[] players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
 
