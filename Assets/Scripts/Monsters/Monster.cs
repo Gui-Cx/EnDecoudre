@@ -25,8 +25,9 @@ public class Monster : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
     }
 
-    private void loseHP(int value)
-    {
+    public void loseHP(int value)
+    {   
+        Debug.LogFormat("Cx : Enemy {0} lost {1} HP", gameObject.name, value);
         health -= value;
         if(health <= 0)
         {

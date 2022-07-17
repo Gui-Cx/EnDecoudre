@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalCharges: 4
   cooldown: 15
-  duration: 16
-  distance: 17
-  movingDamageHeight: 18
-  movingDamageWidth: 19
-  endDamageRadius: 20
-  movingDamage: 21
+  sprite: {fileID: 0}
+  duration: 1
+  distance: 10
+  movingDamageHeight: 1
+  movingDamageWidth: 1
+  endDamageRadius: 30
+  movingDamage: 10
   endDamage: 22

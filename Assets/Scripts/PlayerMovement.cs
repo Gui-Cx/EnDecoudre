@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             }
             anim.SetFloat("inputX", inputX);
             anim.SetFloat("inputY", inputY);
-            Debug.Log("isMoving");
+            //Debug.Log("isMoving");
             inputXTmp = inputX;
             inputYTmp = inputY;
             //Debug.Log("Player "+indexOfPrefab+" inputX " + inputX);

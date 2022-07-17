@@ -115,8 +115,8 @@ public class Player : MonoBehaviour
 
     public void Roll()
     {
-        //currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
-        currentFace = (int)PowerEnum.Dash;
+        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        //currentFace = (int)PowerEnum.Dash;
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
         indexOfFace = currentFace +1;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
-        Debug.Log(indexOfFace);
+        Debug.LogFormat("index of Face = {0}", indexOfFace);
         while (animation < duration)
         {
             animation += Time.deltaTime;
@@ -157,10 +157,6 @@ public class Player : MonoBehaviour
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
-            // else
-            // {
-            //     Roll();
-            // }
         }
 
     }
@@ -169,14 +165,14 @@ public class Player : MonoBehaviour
     private void die()
     {
         SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
-        print("isdie");
+        Debug.Log("{0} died");
     }
 
     public void takeDamage(int value)
     {
         hp -= value;
         SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
-        print(hp);
+        Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
         if( hp <= 0)
         {
             die();

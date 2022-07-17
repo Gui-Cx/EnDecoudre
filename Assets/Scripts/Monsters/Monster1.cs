@@ -6,7 +6,7 @@ public class Monster1 : Monster
 {
     private void Update()
     {
-        print("hnelo");
+        // print("hnelo");
     }
 
     public override IEnumerator doAttack(Player player)

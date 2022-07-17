@@ -62,7 +62,7 @@ public class Dash : Power
         {
             if (enemy.collider.gameObject.tag.Equals("Monster"))
             {
-                //Monster monster = enemy.collider.GetComponent<Monster>()?.TakeDamage(dashData.movingDamage);
+                enemy.collider.GetComponent<Monster>()?.loseHP((elapsedTime < dashData.duration) ? dashData.movingDamage : dashData.endDamage );
             }
         }
     }
