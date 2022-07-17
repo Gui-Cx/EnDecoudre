@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     private int indexOfPrefab;
     private bool onFly;
-    private float inputXTmp;
-    private float inputYTmp;
+    private float inputXTmp = 0;
+    private float inputYTmp = -1;
     private Vector2 moveDirection;
     [SerializeField] private float moveSpeed;
     private bool isMoving;
