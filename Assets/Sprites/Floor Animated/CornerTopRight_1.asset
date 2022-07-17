@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CornerTopRight_1
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -1581660421, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: -1219695577, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: -1255949084, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: -1684044828, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: 1269287965, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: 108546898, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: 555309492, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
-  - {fileID: -1939012154, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: 1979351598, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: -1933982550, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: -845879900, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: 621434458, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: 358830481, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: 1943976339, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: 1026273796, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
+  - {fileID: -1643583376, guid: bdf9e00d4d3d5f04aa7ec783c01899c0, type: 3}
   m_MinSpeed: 10
   m_MaxSpeed: 10
   m_AnimationStartTime: 0

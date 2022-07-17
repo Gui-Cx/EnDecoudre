@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CornerBotRight_1
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -1528209696, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -1722793769, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -925543103, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -1999047409, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: 2081894038, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -1474481791, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -788613869, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
-  - {fileID: -2037206782, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 442114164, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: -263805017, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: -603381369, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 823703224, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 1937591461, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 139039974, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 1387653640, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
+  - {fileID: 1216574051, guid: 12b1173d1f552b54686943ca32b2722b, type: 3}
   m_MinSpeed: 10
   m_MaxSpeed: 10
   m_AnimationStartTime: 0

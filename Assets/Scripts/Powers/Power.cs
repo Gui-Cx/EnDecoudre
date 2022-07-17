@@ -28,6 +28,8 @@ public abstract class Power
     /// The time between two attacks 
     /// </summary>
     public float cooldown;
+
+    public PowerData _powerData;
     
 
     public abstract void ActivateOnce(Player player);
@@ -75,6 +77,7 @@ public abstract class Power
     {
         totalCharges = powerData.totalCharges;
         currentCharges = powerData.totalCharges;
+        _powerData = powerData;
         
     }
 }
