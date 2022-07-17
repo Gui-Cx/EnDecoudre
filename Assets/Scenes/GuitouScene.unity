@@ -363,6 +363,14 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: a73a71ee7423ba642bc4ba0c97ff58e5, type: 3}
   - sound: 17
     audioClip: {fileID: 8300000, guid: 03387f78e2ad26643a105298808adce6, type: 3}
+  - sound: 18
+    audioClip: {fileID: 8300000, guid: f98b9cc0fd4fe204587f008019a6a49c, type: 3}
+  - sound: 19
+    audioClip: {fileID: 8300000, guid: 650521f635291f8478c2ead95ece00a3, type: 3}
+  - sound: 20
+    audioClip: {fileID: 8300000, guid: 2ff1d7648be769548aded226a40e762b, type: 3}
+  - sound: 21
+    audioClip: {fileID: 8300000, guid: c262b0597eb41dc4da48c2ee8cd40b6a, type: 3}
   canPlayStep: 1
   stepFrequency: 0.3
 --- !u!4 &2074840750

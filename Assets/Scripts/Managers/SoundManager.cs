@@ -23,7 +23,11 @@ public static class SoundManager
         Piou2,
         Sword1,
         Sword2,
-        Walk1
+        Walk1,
+        YeetDerminator1,
+        YeetDerminator2,
+        YeetDave1,
+        YeetDave2
     }
 
     public static void PlaySound(Sound sound, float volume = 1f)

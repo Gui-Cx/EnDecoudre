@@ -32,7 +32,45 @@ public class SoundAssets : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PlayPlayerDiceSound(int player)
+    public void PlaySpawnSound()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.PlayerArrival);
+
+    }
+
+    public void PlayYeetSound(int player)
+    {
+        int soundToPlay = Random.Range(0, 2);
+        if (player == 0)
+        {
+            switch (soundToPlay)
+            {
+                case 0:
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDave1);
+                    break;
+                case 1:
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDave2);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (soundToPlay)
+            {
+                case 0:
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator1);
+                    break;
+                case 1:
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator2);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public void PlayPlayerDieSound(int player)
     {
         int soundToPlay = Random.Range(0, 3);
         if (player == 0)
@@ -68,6 +106,23 @@ public class SoundAssets : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+    public void PlaySword()
+    {
+        int soundToPlay = Random.Range(0, 2);
+            
+        switch (soundToPlay)
+        {
+            case 0:
+                SoundManager.PlaySound(SoundManager.Sound.Sword1);
+                break;
+            case 1:
+                SoundManager.PlaySound(SoundManager.Sound.Sword2);
+                break;
+            default:
+                break;
         }
     }
 
