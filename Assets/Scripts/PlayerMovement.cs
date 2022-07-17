@@ -32,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Player "+indexOfPrefab+" inputX " + inputX);
+        //Debug.Log("Player " + indexOfPrefab + " inputY " + inputY);
 
+        moveDirection = new Vector2(inputX, inputY).normalized;
         rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
         isMoving = !(inputX==0 && inputY==0);
         //print(isMoving);
@@ -58,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
         onFly = value;
     }
 
+    public void SetInput(float inputX, float inputY)
+    {
+        this.inputX = inputX;
+        this.inputY = inputY;
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -65,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
         {
             inputX = context.ReadValue<Vector2>().x;
             inputY = context.ReadValue<Vector2>().y;
-            moveDirection = new Vector2(inputX, inputY).normalized;
         }
     }
 
