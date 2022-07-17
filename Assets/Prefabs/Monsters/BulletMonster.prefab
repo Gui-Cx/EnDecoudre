@@ -111,8 +111,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1509075458302756427}
   - component: {fileID: 5219517446630273484}
+  - component: {fileID: 8489900963180544773}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,3 +149,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   speed: 15
+--- !u!95 &8489900963180544773
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753822993887178638}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9c8cc1aa52c9f04b8f3b0bd3aa78b31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
