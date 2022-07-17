@@ -102,8 +102,8 @@ public class Player : MonoBehaviour
 
     public void Roll()
     {
-        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
-
+        //currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        currentFace = 1;
 
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
     private IEnumerator CooldownAttack()
     {
         canFire = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         canFire = true;
         yield return null;
     }

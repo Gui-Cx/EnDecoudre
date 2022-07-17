@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb2de0e4ca1de347abd66f2d1b5f6e3, type: 3}
   m_Name: ShotgunData
   m_EditorClassIdentifier: 
-  totalCharges: 2
+  totalCharges: 100
   cooldown: 6
   sprite: {fileID: 0}
   radius: 7
   angle: 8
   damage: 9
-  numberBullet: 1
   bulletPrefab: {fileID: 1212286309019803801, guid: 48caf4d9560274244ac2ea47f1b49df8, type: 3}

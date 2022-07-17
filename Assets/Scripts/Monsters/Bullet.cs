@@ -7,6 +7,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] private float speed;
 
+    private void Awake()
+    {
+        StartCoroutine(lifeTime());
+    }
     private void Update()
     {
         transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
@@ -18,5 +22,12 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<Player>().takeDamage(damage);
             Destroy(this);
         }
+    }
+
+    private IEnumerator lifeTime()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(this);
+        yield return null;
     }
 }
