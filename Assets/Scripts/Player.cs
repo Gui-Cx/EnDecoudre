@@ -29,7 +29,11 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Transform playerTransform;
     Animator anim;
+    
     UImanager _uimanager;
+    private Rigidbody2D rb;
+
+    bool canFire;
 
     private float duration = 2f;
 
@@ -47,7 +51,9 @@ public class Player : MonoBehaviour
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         hp = maxHP;
+        canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
@@ -125,7 +131,13 @@ public class Player : MonoBehaviour
         while (animation < duration)
         {
             animation += Time.deltaTime;
+            //transform.position = Parabola(start, finish, duration, animation / duration);
             transform.position = Parabola(start, finish, duration, animation / duration);
+            Collider2D[] colliders = new Collider2D[2];
+            if(this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders) > 0 && !colliders.First().gameObject.CompareTag("Player"))
+            {
+                break;
+            }
             anim.SetInteger("indexOfFace", indexOfFace);
             //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
@@ -143,8 +155,9 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            if (currentPower != null && currentPower.currentCharges > 0)
+            if (currentPower != null && currentPower.currentCharges > 0 && canFire)
             {
+                StartCoroutine(CooldownAttack());
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
                 _uimanager.UpdateShotCount(currentPower, this);
@@ -153,6 +166,13 @@ public class Player : MonoBehaviour
 
     }
 
+    private IEnumerator CooldownAttack()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(2);
+        canFire = true;
+        yield return null;
+    }
 
     private void die()
     {

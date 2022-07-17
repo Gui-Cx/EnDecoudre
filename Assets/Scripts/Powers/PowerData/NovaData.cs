@@ -15,6 +15,10 @@ public class NovaData : PowerData
     [Tooltip("Duration of the nova")]
     public int duration;
 
+    [SerializeField]
+    [Tooltip("The prefab of the nova area")]
+    public GameObject novaAreaPrefab;
+
     public override string ToString()
     {
         return string.Format("NovaData : radius = {0}, damage = {1}, duration = {2}, cooldown = {3}, total charges = {4}", radius, damage, duration, cooldown, totalCharges);
