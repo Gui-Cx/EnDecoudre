@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalCharges: 5
   cooldown: 22
+  sprite: {fileID: 0}
   radius: 23
-  angle: 24
+  angle: 180
   damage: 25
+  swordAreaPrefab: {fileID: 8506247593818016171, guid: b0d5381f2fa1a1f478693bce67064dd8, type: 3}
+  duration: 0
