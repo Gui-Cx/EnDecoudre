@@ -57,20 +57,17 @@ public class SoundAssets : MonoBehaviour
     }
     internal void PlayStartMusic()
     {
-        StartCoroutine(StopMusicWithFade());  
-        PlayMusic(StartMusic);
+        StartCoroutine(UpdateMusicWithFade(musicSource, StartMusic,0.5f));  
     }
 
     internal void PlayMainMusic()
     {
-        StartCoroutine(StopMusicWithFade());
-        PlayMusic(mainMusic);
+        StartCoroutine(UpdateMusicWithFade(musicSource,mainMusic,0.5f));
     }
 
     internal void PlayGameOverMusic()
     {
-        StartCoroutine(StopMusicWithFade());
-        PlayMusic(EndMusic);
+        StartCoroutine(UpdateMusicWithFade(musicSource, EndMusic, 0.5f));
     }
 
     public void PlayMusic(AudioClip musicClip)
@@ -80,6 +77,28 @@ public class SoundAssets : MonoBehaviour
         musicSource.Play();
     }
 
+    private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioClip newClip, float transitionTime)
+    {
+        if (!activeSource.isPlaying)
+            activeSource.Play();
+
+        float t = 0.0f;
+
+        for (t = 0; t < transitionTime; t += Time.deltaTime)
+        {
+            activeSource.volume = (1 - (t / transitionTime)) * mainMusicVolume * musicVolumeModifier;
+            yield return null;
+        }
+        activeSource.Stop();
+        activeSource.clip = newClip;
+        activeSource.Play();
+
+        for (t = 0; t < transitionTime; t += Time.deltaTime)
+        {
+            activeSource.volume = (t / transitionTime) * mainMusicVolume * musicVolumeModifier;
+            yield return null;
+        }
+    }
     public IEnumerator StopMusicWithFade(float transitionTime = 1.0f)
     {
 
@@ -113,10 +132,10 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.YeetDave1);
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDave1, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.YeetDave2);
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDave2, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -127,10 +146,10 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator1);
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator1, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator2);
+                    SoundManager.PlaySound(SoundManager.Sound.YeetDerminator2, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -151,13 +170,13 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDave1);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDave1, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDave2);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDave2, mainSFXVolume);
                     break;
                 case 2:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDave3);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDave3, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -168,13 +187,13 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator1);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator1, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator2);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator2, mainSFXVolume);
                     break;
                 case 2:
-                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator2);
+                    SoundManager.PlaySound(SoundManager.Sound.DieDerminator2, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -189,10 +208,10 @@ public class SoundAssets : MonoBehaviour
         switch (soundToPlay)
         {
             case 0:
-                SoundManager.PlaySound(SoundManager.Sound.Sword1);
+                SoundManager.PlaySound(SoundManager.Sound.Sword1, mainSFXVolume);
                 break;
             case 1:
-                SoundManager.PlaySound(SoundManager.Sound.Sword2);
+                SoundManager.PlaySound(SoundManager.Sound.Sword2, mainSFXVolume);
                 break;
             default:
                 break;
@@ -206,13 +225,13 @@ public class SoundAssets : MonoBehaviour
         switch (soundToPlay)
         {
             case 0:
-                SoundManager.PlaySound(SoundManager.Sound.Piou1);
+                SoundManager.PlaySound(SoundManager.Sound.Piou1, mainSFXVolume);
                 break;
             case 1:
-                SoundManager.PlaySound(SoundManager.Sound.Piou2);
+                SoundManager.PlaySound(SoundManager.Sound.Piou2, mainSFXVolume);
                 break;
             case 2:
-                SoundManager.PlaySound(SoundManager.Sound.Piou1);
+                SoundManager.PlaySound(SoundManager.Sound.Piou1, mainSFXVolume);
                 break;
             default:
                 break;
@@ -227,13 +246,13 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDave);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDave, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDave);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDave, mainSFXVolume);
                     break;
                 case 2:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDave);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDave, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -244,13 +263,13 @@ public class SoundAssets : MonoBehaviour
             switch (soundToPlay)
             {
                 case 0:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator1);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator1, mainSFXVolume);
                     break;
                 case 1:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator2);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator2, mainSFXVolume);
                     break;
                 case 2:
-                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator2);
+                    SoundManager.PlaySound(SoundManager.Sound.OuchDerminator2, mainSFXVolume);
                     break;
                 default:
                     break;
@@ -260,7 +279,7 @@ public class SoundAssets : MonoBehaviour
 
     public void PlayOpenDoor()
     {
-        SoundManager.PlaySound(SoundManager.Sound.OpenMetallicDoor);
+        SoundManager.PlaySound(SoundManager.Sound.OpenMetallicDoor, mainSFXVolume);
     }
 
     public void PlayFootstep()

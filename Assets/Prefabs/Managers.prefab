@@ -95,10 +95,10 @@ MonoBehaviour:
   - sound: 24
     audioClip: {fileID: 8300000, guid: 90882e1768895eb4e998e9421d5c9e51, type: 3}
   canPlayStep: 1
-  mainMusic: {fileID: 0}
+  mainMusic: {fileID: 8300000, guid: e541935128a207f4faf7e3b485d17600, type: 3}
   ambiantMusic: {fileID: 0}
-  StartMusic: {fileID: 0}
-  EndMusic: {fileID: 0}
+  StartMusic: {fileID: 8300000, guid: 01244909c649bbf4e8ca6cef1099c0aa, type: 3}
+  EndMusic: {fileID: 8300000, guid: 90882e1768895eb4e998e9421d5c9e51, type: 3}
   musicVolumeModifier: 0.35
   sfxVolumeModifier: 0.5
   mainMusicVolume: 1

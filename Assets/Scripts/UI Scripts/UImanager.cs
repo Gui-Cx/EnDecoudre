@@ -63,7 +63,8 @@ public class UImanager : MonoBehaviour
     }
 
     public void StartGame() {
-        anim.SetTrigger("IsStarted"); 
+        anim.SetTrigger("IsStarted");
+        GameManager.Instance.UpdateGameState(GameManager.GameState.InGame);
     }
 
     public void TriggerMainMenu(bool status) {
@@ -71,7 +72,6 @@ public class UImanager : MonoBehaviour
             anim.SetTrigger("MainMenuOpen");
         } else {
             anim.SetTrigger("MainMenuClose");
-            GameManager.Instance.UpdateGameState(GameManager.GameState.InGame);
         }
     }
 
