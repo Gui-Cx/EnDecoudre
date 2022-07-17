@@ -24,7 +24,7 @@ public class SoundAssets : MonoBehaviour
     {
         if (instance)
         {
-            Debug.Log("Il y a déjà une instance de SoundManager : Autodestruction lancée ");
+            Debug.Log("Il y a dï¿½jï¿½ une instance de SoundManager : Autodestruction lancï¿½e ");
             Destroy(this.gameObject);
             return;
         }
