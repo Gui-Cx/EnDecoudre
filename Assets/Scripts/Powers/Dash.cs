@@ -21,6 +21,7 @@ public class Dash : Power
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Dash {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, dashData.ToString());
+
     }
     public Dash(PowerData powerData) : base(powerData)
     {

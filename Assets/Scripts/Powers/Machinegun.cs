@@ -15,7 +15,32 @@ public class Machinegun : Power
     MachinegunData mgData;
     public override void ActivateOnce(Player player)
     {
-        Debug.LogFormat("MachineGun {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, mgData.ToString());
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.LogFormat("MachineGun {0}/{1} : {2}", totalCharges - currentCharges, totalCharges, mgData.ToString());
+            Vector2 directionToTarget = new Vector2(player.gameObject.GetComponent<PlayerMovement>().getDirection()[0],
+          player.gameObject.GetComponent<PlayerMovement>().getDirection()[1]);
+            float angle;
+            if (i == 0)
+            {
+                angle = Vector3.Angle(Vector3.right, directionToTarget) + 10;
+            }
+            else if (i == 1)
+            {
+                angle = Vector3.Angle(Vector3.right, directionToTarget);
+
+            }
+            else{
+                angle = Vector3.Angle(Vector3.right, directionToTarget) - 10;
+
+            }
+            if (player.gameObject.GetComponent<PlayerMovement>().getDirection()[1] < player.transform.position.y) angle *= -1;
+            Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            GameObject bullet = GameObject.Instantiate(mgData.bulletPrefab, player.transform.position, bulletRotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        }
+
+
     }
 
     public Machinegun(PowerData powerData) : base(powerData){
