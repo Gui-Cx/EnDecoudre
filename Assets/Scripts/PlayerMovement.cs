@@ -16,8 +16,19 @@ public class PlayerMovement : MonoBehaviour
     private float inputXTmp;
     private float inputYTmp;
     private Vector2 moveDirection;
+
     [SerializeField] private float moveSpeed;
     private bool isMoving;
+
+    public bool isControllable;
+
+    private Player player;
+
+    #region Dash
+    Dash dashPower;
+
+    private float dashElapsedTime;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -25,30 +36,40 @@ public class PlayerMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
         moveSpeed = maxSpeed;
+        player = this.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
-        isMoving = !(inputX==0 && inputY==0);
-        //print(isMoving);
-        anim.SetBool("isMoving", isMoving);
-
-        if (isMoving)
-        {
-            anim.SetFloat("inputX", inputX);
-            anim.SetFloat("inputY", inputY);
-            inputXTmp = inputX;
-            inputYTmp = inputY;
+        if (player.playerState == States.Dashing)
+        {   
+            dashElapsedTime += Time.deltaTime;
+            rb.velocity = new Vector2(inputXTmp, inputYTmp) * dashPower.dashSpeed;
+            dashPower.DashFrame(dashElapsedTime);
         }
         else
         {
-            anim.SetFloat("inputX", inputXTmp);
-            anim.SetFloat("inputY", inputYTmp);
-        }
 
+
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+            isMoving = !(inputX == 0 && inputY == 0);
+            //print(isMoving);
+            anim.SetBool("isMoving", isMoving);
+
+            if (isMoving)
+            {
+                anim.SetFloat("inputX", inputX);
+                anim.SetFloat("inputY", inputY);
+                inputXTmp = inputX;
+                inputYTmp = inputY;
+            }
+            else
+            {
+                anim.SetFloat("inputX", inputXTmp);
+                anim.SetFloat("inputY", inputYTmp);
+            }
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -66,6 +87,13 @@ public class PlayerMovement : MonoBehaviour
     public void setSpeed(float value)
     {
         moveSpeed = value;
+    }
+
+    public void InitDashMovement(Dash dash){
+        dashPower = dash;
+        player.playerState = States.Dashing;
+        dashElapsedTime = 0f;
+
     }
 
 }

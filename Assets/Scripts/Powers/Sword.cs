@@ -18,7 +18,7 @@ public class Sword : Power
         Debug.LogFormat("Attack {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, swordData.ToString());
     }
 
-    public Sword(PowerData powerData) : base(powerData)
+    public Sword(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         swordData = powerData as SwordData;
     }

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] int indexOfPrefab;
     public static event Action<int> ThePlayerSpawns;
-    public States playerState;
+    public States   playerState;
     private CircleCollider2D detection;
     private PlayerMovement playerMovement;
     public Transform playerTransform;
@@ -103,7 +103,8 @@ public class Player : MonoBehaviour
 
     public void Roll()
     {
-        currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        //currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
+        currentFace = (int)PowerEnum.Dash;
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
     }
@@ -133,10 +134,10 @@ public class Player : MonoBehaviour
                 currentPower.currentCharges--;
                 currentPower.ActivateOnce(this);
             }
-            else
-            {
-                Roll();
-            }
+            // else
+            // {
+            //     Roll();
+            // }
         }
 
     }
