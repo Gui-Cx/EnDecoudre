@@ -190,6 +190,7 @@ MonoBehaviour:
   hp: 150
   maxHP: 150
   availablePowers: 
+  isDead: 0
   indexOfPrefab: 0
   playerState: 0
   playerMovement: {fileID: 0}
@@ -336,8 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab62cc68dde92044eba8d5baf755d678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
-  moveSpeed: 2
+  maxSpeed: 4
+  moveSpeed: 4
   isControllable: 0
 --- !u!50 &2671701060850033209
 Rigidbody2D:
