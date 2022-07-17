@@ -126,11 +126,12 @@ public class Player : MonoBehaviour
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
+        Debug.Log(indexOfFace);
         while (animation < duration)
         {
             animation += Time.deltaTime;
             transform.position = Parabola(start, finish, duration, animation / duration);
-            anim.SetFloat("indexOfFace", indexOfFace);
+            anim.SetInteger("indexOfFace", indexOfFace);
             //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }

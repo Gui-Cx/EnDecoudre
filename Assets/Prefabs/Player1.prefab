@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1801738044, guid: 29abfe615e245f34e86e2e930bf58593, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.7490566, b: 0.7490566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1054502083548198357
@@ -297,7 +297,6 @@ MonoBehaviour:
   hp: 10
   availablePowers: 
   indexOfPrefab: 1
-  playerTransform: {fileID: 0}
   currentFace: 1
   listPowerPrefabs:
   - {fileID: 11400000, guid: 971dd6dce314f6342b506adc7a4ad9f3, type: 2}
