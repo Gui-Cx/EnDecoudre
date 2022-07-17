@@ -50,8 +50,8 @@ MonoBehaviour:
   maxHealth: 0
   speed: 2
   cooldown: 4
-  distanceAttack: 7
-  distanceDecay: 4
+  distanceAttack: 5
+  distanceDecay: 2
   degat: 0
   spawn: {fileID: 0}
   BulletPrefab: {fileID: 6753822993887178638, guid: c577900620c60b848bd8c186181944bc, type: 3}

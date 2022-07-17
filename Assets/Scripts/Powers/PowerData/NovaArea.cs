@@ -26,10 +26,11 @@ public class NovaArea : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag.Equals("Monster"))
-            {
-                Debug.LogFormat("Cx : Enemy {0} hit by nova from {1}", collider.gameObject.name, novaPower.player.name);
-                collider.GetComponent<Monster>()?.loseHP(novaData.damage);
-            }
-
+        {
+            Debug.LogFormat("Cx : Enemy {0} hit by nova from {1}", collider.gameObject.name, novaPower.player.name);
+            collider.GetComponent<Monster>()?.loseHP(novaData.damage);
+        } else if (collider.tag == "Box") {
+            Destroy(collider.gameObject);
+        }
     }
 }
