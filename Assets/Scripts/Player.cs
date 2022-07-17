@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 using System.Linq;
 
 
+public enum States { OnFoot, Flying, Waiting, Dashing }
+
 public class Player : MonoBehaviour
 {
-    enum States { OnFoot, Flying, Waiting, Dashing }
     public int hp;
 
     public Power currentPower;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] int indexOfPrefab;
     public static event Action<int> ThePlayerSpawns;
-    States playerState;
+    public States playerState;
     private CircleCollider2D detection;
     private PlayerMovement playerMovement;
     public Transform playerTransform;
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
     {
         currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
-        currentPower = Power.GetPower(availablePowers[currentFace], listPowerPrefabs);
+        currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
     }
 
 

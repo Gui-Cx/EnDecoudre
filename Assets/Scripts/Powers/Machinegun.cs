@@ -18,7 +18,7 @@ public class Machinegun : Power
         Debug.LogFormat("MachineGun {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, mgData.ToString());
     }
 
-    public Machinegun(PowerData powerData) : base(powerData){
+    public Machinegun(PowerData powerData, Player playerArg) : base(powerData, playerArg){
         mgData = powerData as MachinegunData; 
     }
 }
