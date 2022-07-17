@@ -8,7 +8,7 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-    enum States { onFoot, onFly, onWait }
+    enum States { OnFoot, Flying, Waiting, Dashing }
     public int hp;
 
     public Power currentPower;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        playerState = States.onFoot;
+        playerState = States.OnFoot;
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
@@ -55,14 +55,14 @@ public class Player : MonoBehaviour
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
-        if (playerState == States.onFoot)
+        if (playerState == States.OnFoot)
         {
-            playerState = States.onWait;
+            playerState = States.Waiting;
             playerMovement.setSpeed(0);
         }
         if (context.canceled)
         {
-            playerState = States.onFoot;
+            playerState = States.OnFoot;
             playerMovement.setSpeed(playerMovement.maxSpeed);
         }
     }
@@ -75,15 +75,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerState == States.onWait && collision.CompareTag("Player"))
+        if (playerState == States.Waiting && collision.CompareTag("Player"))
         {
             float[] direction = playerMovement.getDirection();
             Player[] players = collision.GetComponents<Player>();
             Player otherPlayer = players.First(x => x != this);
-            otherPlayer.playerState = States.onFly;
+            otherPlayer.playerState = States.Flying;
             otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
                 new Vector2(otherPlayer.playerTransform.position.x + direction[0] * 5, otherPlayer.playerTransform.position.y + direction[1] * 2)));
-            playerState = States.onFoot;
+            playerState = States.OnFoot;
 
         }
     }
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
             transform.position = Parabola(start, finish, duration, animation / duration);
             yield return null;
         }
-        playerState = States.onFoot;
+        playerState = States.OnFoot;
         Roll();
         yield return null;
     }
