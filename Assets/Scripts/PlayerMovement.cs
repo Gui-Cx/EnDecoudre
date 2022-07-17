@@ -106,6 +106,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public Vector2 GetForwardDirection(){
+        return new Vector2(inputXTmp, inputY);
+    }
 
     public void SetOnFly(bool value)
     {

@@ -12,7 +12,7 @@ public class Sword : Power
     /// int total charges : the number of attack before this power is unusable
     /// float cooldown : the time between two attacks 
     /// </summary>
-    SwordData swordData;
+    public SwordData swordData;
     
     GameObject swordAreaGO;
 
