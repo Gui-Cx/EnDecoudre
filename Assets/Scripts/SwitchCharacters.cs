@@ -28,9 +28,6 @@ public class SwitchCharacters : MonoBehaviour
     {
         current = (playerManager.playerCount == 2) ? 0 : playerManager.playerCount;
         playerManager.playerPrefab = playersPrefab[current];
-
- 
-
     }
 
     public int GetPlayerCount()

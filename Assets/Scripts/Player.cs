@@ -8,7 +8,7 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-    enum States { onFoot, onFly, onWait }
+    public enum States { onFoot, onFly, onWait }
     public int hp;
     [SerializeField] public int maxHP;
 
@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
     [SerializeField] int indexOfPrefab;
     private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
-    States playerState;
+    public States playerState;
     private CircleCollider2D detection;
-    private PlayerMovement playerMovement;
-    private Transform playerTransform;
+    public PlayerMovement playerMovement;
+    public Transform playerTransform;
     Animator anim;
 
     private float duration = 2f;
@@ -83,22 +83,6 @@ public class Player : MonoBehaviour
     {
         //print(playerState);
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (playerState == States.onWait && collision.CompareTag("Player"))
-        {
-            float[] direction = playerMovement.getDirection();
-            Player[] players = collision.GetComponents<Player>();
-            Player otherPlayer = players.First(x => x != this);
-            otherPlayer.playerState = States.onFly;
-            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
-                new Vector2(otherPlayer.playerTransform.position.x + direction[0] * 5, otherPlayer.playerTransform.position.y + direction[1] * 2)));
-            playerState = States.onFoot;
-
-        }
-    }
         //print(this.GetComponent<PlayerInput>().currentControlScheme);
 
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
@@ -121,11 +105,12 @@ public class Player : MonoBehaviour
     }
 
 
-    private IEnumerator Fly(Vector2 start, Vector2 finish)
+    public IEnumerator Fly(Vector2 start, Vector2 finish)
     {
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
+        this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que �a change la valeur de indexOfFace
         Roll();
@@ -141,6 +126,7 @@ public class Player : MonoBehaviour
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.onFoot;
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
         anim.SetBool("onFly", false);
         yield return null;
     }
