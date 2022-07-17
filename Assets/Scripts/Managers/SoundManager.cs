@@ -18,7 +18,12 @@ public static class SoundManager
         OpenMetallicDoor,
         OuchDave,
         OuchDerminator1,
-        OuchDerminator2
+        OuchDerminator2,
+        Piou1,
+        Piou2,
+        Sword1,
+        Sword2,
+        Walk1
     }
 
     public static void PlaySound(Sound sound, float volume = 1f)
