@@ -17,6 +17,17 @@ public class Boomerang : Power
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Boomerang {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, boomerangData.ToString());
+        Vector2 directionToTarget = new Vector2(player.gameObject.GetComponent<PlayerMovement>().getDirection()[0],
+        player.gameObject.GetComponent<PlayerMovement>().getDirection()[1]);
+        if (directionToTarget.x != 0 && directionToTarget.y != 0)
+        {
+            directionToTarget = new Vector2(directionToTarget.x, 0);
+        }
+        float angle = Vector3.Angle(Vector3.right, directionToTarget);
+        if (player.gameObject.GetComponent<PlayerMovement>().getDirection()[1] < 0) angle *= -1;
+        Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        GameObject bullet = GameObject.Instantiate(boomerangData.bulletPrefab, player.transform.position, bulletRotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
     }
 
     public Boomerang(PowerData powerData, Player playerArg) : base(powerData, playerArg)
