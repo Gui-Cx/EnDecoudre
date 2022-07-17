@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundAssets : MonoBehaviour
 {
@@ -10,6 +11,20 @@ public class SoundAssets : MonoBehaviour
 
     private float stepTimer;
     public bool canPlayStep = true;
+    public AudioClip mainMusic;
+    public AudioClip ambiantMusic;
+    private AudioSource musicSource;
+
+
+    public float musicVolumeModifier = 0.35f;
+    public float sfxVolumeModifier = 0.5f;
+
+    public float mainMusicVolume = 1f;
+    public float mainSFXVolume = 1f;
+
+    public Slider musicSlide;
+    public Slider ambiantSlide;
+    public Slider sfxSlide;
 
     [SerializeField] private float stepFrequency = 0.3f;
 
@@ -30,6 +45,39 @@ public class SoundAssets : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
+        musicSource = this.gameObject.AddComponent<AudioSource>();
+
+        musicSource.loop = true;
+        musicSource.volume = 0.5f; 
+        mainMusicVolume = 0.5f;
+        mainSFXVolume = 0.5f;
+    }
+
+    public void PlayMusic(AudioClip musicClip)
+    {
+        musicSource.clip = musicClip;
+        musicSource.volume = mainMusicVolume * musicVolumeModifier;
+        musicSource.Play();
+    }
+
+    public IEnumerator StopMusicWithFade(float transitionTime = 1.0f)
+    {
+
+        float t = 0f;
+
+        for (t = 0f; t <= transitionTime; t += Time.deltaTime)
+        {
+            musicSource.volume = (1 - (t / transitionTime)) * mainMusicVolume * musicVolumeModifier;
+            yield return null;
+        }
+
+        musicSource.Stop();
+    }
+
+    public void StopMusic()
+    {
+        StartCoroutine(StopMusicWithFade(1f));
     }
 
     public void PlaySpawnSound()

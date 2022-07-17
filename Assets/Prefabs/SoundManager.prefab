@@ -87,5 +87,20 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 2ff1d7648be769548aded226a40e762b, type: 3}
   - sound: 21
     audioClip: {fileID: 8300000, guid: c262b0597eb41dc4da48c2ee8cd40b6a, type: 3}
+  - sound: 22
+    audioClip: {fileID: 8300000, guid: 223182056980fee4592d4c10cd718d89, type: 3}
+  - sound: 23
+    audioClip: {fileID: 8300000, guid: e541935128a207f4faf7e3b485d17600, type: 3}
+  - sound: 24
+    audioClip: {fileID: 8300000, guid: 90882e1768895eb4e998e9421d5c9e51, type: 3}
   canPlayStep: 1
+  mainMusic: {fileID: 0}
+  ambiantMusic: {fileID: 0}
+  musicVolumeModifier: 0.35
+  sfxVolumeModifier: 0.5
+  mainMusicVolume: 1
+  mainSFXVolume: 1
+  musicSlide: {fileID: 0}
+  ambiantSlide: {fileID: 0}
+  sfxSlide: {fileID: 0}
   stepFrequency: 0.3
