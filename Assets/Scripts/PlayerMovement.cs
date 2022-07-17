@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float inputY;
     [SerializeField] public float maxSpeed;
 
-
+    private int indexOfPrefab;
+    private bool onFly;
     private float inputXTmp;
     private float inputYTmp;
     private Vector2 moveDirection;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        indexOfPrefab = this.GetComponent<Player>().getIndexOfPrefab();
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
         moveSpeed = maxSpeed;
@@ -51,11 +53,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void SetOnFly(bool value)
+    {
+        onFly = value;
+    }
+
+
     public void Move(InputAction.CallbackContext context)
     {
-        inputX = context.ReadValue<Vector2>().x;
-        inputY = context.ReadValue<Vector2>().y;
-        moveDirection = new Vector2(inputX, inputY).normalized;
+        if (!onFly)
+        {
+            inputX = context.ReadValue<Vector2>().x;
+            inputY = context.ReadValue<Vector2>().y;
+            moveDirection = new Vector2(inputX, inputY).normalized;
+        }
     }
 
     public float[] getDirection()

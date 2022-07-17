@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9433962, g: 0.31505868, b: 0.31505868, a: 1}
+  m_Sprite: {fileID: -1801738044, guid: 29abfe615e245f34e86e2e930bf58593, type: 3}
+  m_Color: {r: 1, g: 0.7490566, b: 0.7490566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -249,18 +249,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: -0.005177796}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.20779657, y: 0.25439692}
   m_EdgeRadius: 0
 --- !u!95 &1054502083548198358
 Animator:
@@ -294,10 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31236b0dbc47d2548bc82da163f3b15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 10
   availablePowers: 
   indexOfPrefab: 1
   playerTransform: {fileID: 0}
+  currentFace: 1
   listPowerPrefabs:
   - {fileID: 11400000, guid: 971dd6dce314f6342b506adc7a4ad9f3, type: 2}
   - {fileID: 11400000, guid: 3ede9813d08580f43a49e8a577c25295, type: 2}
@@ -318,6 +319,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.000984177, y: -0.0046984255}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.16694643

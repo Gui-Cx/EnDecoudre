@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] int indexOfPrefab;
+    private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
     States playerState;
     private CircleCollider2D detection;
     private PlayerMovement playerMovement;
-    public Transform playerTransform;
+    private Transform playerTransform;
+    Animator anim;
 
     private float duration = 2f;
 
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         playerState = States.onFoot;
+        anim = this.GetComponent<Animator>();
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
@@ -53,16 +56,23 @@ public class Player : MonoBehaviour
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
 
+    public int getIndexOfPrefab()
+    {
+        return indexOfPrefab;
+    }
+
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
         if (playerState == States.onFoot)
         {
             playerState = States.onWait;
+            anim.SetBool("onWait", true);
             playerMovement.setSpeed(0);
         }
         if (context.canceled)
         {
             playerState = States.onFoot;
+            anim.SetBool("onWait", false);
             playerMovement.setSpeed(playerMovement.maxSpeed);
         }
     }
@@ -105,21 +115,28 @@ public class Player : MonoBehaviour
         currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(availablePowers[currentFace], listPowerPrefabs);
+        indexOfFace = currentFace + 1;
     }
 
 
     private IEnumerator Fly(Vector2 start, Vector2 finish)
     {
-
+        this.GetComponent<PlayerMovement>().SetOnFly(true);
         float animation = 0f;
+        anim.SetBool("onFly", true);
+        // faut lancer ROLL pour que �a change la valeur de indexOfFace
+        Roll();
         while (animation < duration)
         {
             animation += Time.deltaTime;
             transform.position = Parabola(start, finish, duration, animation / duration);
+            anim.SetFloat("indexOfFace", indexOfFace);
+            //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }
+        this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.onFoot;
-        Roll();
+        anim.SetBool("onFly", false);
         yield return null;
     }
 
