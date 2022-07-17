@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float inputY;
     [SerializeField] public float maxSpeed;
 
-
+    private int indexOfPrefab;
+    private bool onFly;
     private float inputXTmp;
     private float inputYTmp;
     private Vector2 moveDirection;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        indexOfPrefab = this.GetComponent<Player>().getIndexOfPrefab();
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
         moveSpeed = maxSpeed;
@@ -43,22 +45,29 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (player.playerState == States.Dashing)
-        {   
+        {
             dashElapsedTime += Time.deltaTime;
             rb.velocity = new Vector2(inputXTmp, inputYTmp) * dashPower.dashSpeed;
             dashPower.DashFrame(dashElapsedTime);
         }
         else
         {
+            //Debug.Log("Player "+indexOfPrefab+" inputX " + inputX);
+            //Debug.Log("Player " + indexOfPrefab + " inputY " + inputY);
 
-
+            moveDirection = new Vector2(inputX, inputY).normalized;
             rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
             isMoving = !(inputX == 0 && inputY == 0);
             //print(isMoving);
             anim.SetBool("isMoving", isMoving);
 
+
             if (isMoving)
             {
+                if (!onFly)
+                {
+                    SoundAssets.instance.PlayFootstep();
+                }
                 anim.SetFloat("inputX", inputX);
                 anim.SetFloat("inputY", inputY);
                 inputXTmp = inputX;
@@ -66,17 +75,47 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                anim.SetFloat("inputX", inputXTmp);
-                anim.SetFloat("inputY", inputYTmp);
+
+
+                rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+                isMoving = !(inputX == 0 && inputY == 0);
+                //print(isMoving);
+                anim.SetBool("isMoving", isMoving);
+
+                if (isMoving)
+                {
+                    anim.SetFloat("inputX", inputX);
+                    anim.SetFloat("inputY", inputY);
+                    inputXTmp = inputX;
+                    inputYTmp = inputY;
+                }
+                else
+                {
+                    anim.SetFloat("inputX", inputXTmp);
+                    anim.SetFloat("inputY", inputYTmp);
+                }
             }
         }
     }
 
+    public void SetOnFly(bool value)
+    {
+        onFly = value;
+    }
+
+    public void SetInput(float inputX, float inputY)
+    {
+        this.inputX = inputX;
+        this.inputY = inputY;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
-        inputX = context.ReadValue<Vector2>().x;
-        inputY = context.ReadValue<Vector2>().y;
-        moveDirection = new Vector2(inputX, inputY).normalized;
+        if (!onFly)
+        {
+            inputX = context.ReadValue<Vector2>().x;
+            inputY = context.ReadValue<Vector2>().y;
+        }
     }
 
     public float[] getDirection()
@@ -89,7 +128,8 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = value;
     }
 
-    public void InitDashMovement(Dash dash){
+    public void InitDashMovement(Dash dash)
+    {
         dashPower = dash;
         player.playerState = States.Dashing;
         dashElapsedTime = 0f;

@@ -11,6 +11,7 @@ public enum States { OnFoot, Flying, Waiting, Dashing }
 public class Player : MonoBehaviour
 {
     public int hp;
+    [SerializeField] int maxHP;
 
     public Power currentPower;
 
@@ -21,11 +22,13 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] int indexOfPrefab;
+    private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
     public States   playerState;
     private CircleCollider2D detection;
     private PlayerMovement playerMovement;
-    public Transform playerTransform;
+    private Transform playerTransform;
+    Animator anim;
 
     private float duration = 2f;
 
@@ -38,10 +41,11 @@ public class Player : MonoBehaviour
     void Awake()
     {
         playerState = States.OnFoot;
+        anim = this.GetComponent<Animator>();
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-
+        hp = maxHP;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
 
@@ -50,8 +54,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         Roll();
-
+        SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
+    }
+
+    public int getIndexOfPrefab()
+    {
+        return indexOfPrefab;
     }
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
@@ -59,11 +68,13 @@ public class Player : MonoBehaviour
         if (playerState == States.OnFoot)
         {
             playerState = States.Waiting;
+            anim.SetBool("onWait", true);
             playerMovement.setSpeed(0);
         }
         if (context.canceled)
         {
             playerState = States.OnFoot;
+            anim.SetBool("onWait", false);
             playerMovement.setSpeed(playerMovement.maxSpeed);
         }
     }
@@ -107,21 +118,32 @@ public class Player : MonoBehaviour
         currentFace = (int)PowerEnum.Dash;
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
+        indexOfFace = currentFace +1;
     }
 
 
     private IEnumerator Fly(Vector2 start, Vector2 finish)
     {
-
+        this.GetComponent<PlayerMovement>().SetOnFly(true);
+        SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
+        anim.SetBool("onFly", true);
+        // faut lancer ROLL pour que �a change la valeur de indexOfFace
+        Roll();
+        Debug.Log(indexOfFace);
         while (animation < duration)
         {
             animation += Time.deltaTime;
             transform.position = Parabola(start, finish, duration, animation / duration);
+            anim.SetInteger("indexOfFace", indexOfFace);
+            //lancer l'al�atoire entre 1 et 6 avec powers ? en gros tenir � jour une valeur int faceValue pour que d�s l'atterissage on soit dans la bonne animation
             yield return null;
         }
-        playerState = States.OnFoot;
         Roll();
+        this.GetComponent<PlayerMovement>().SetInput(0, 0);
+        this.GetComponent<PlayerMovement>().SetOnFly(false);
+        playerState = States.OnFoot;
+        anim.SetBool("onFly", false);
         yield return null;
     }
 
@@ -140,6 +162,24 @@ public class Player : MonoBehaviour
             // }
         }
 
+    }
+
+
+    private void die()
+    {
+        SoundAssets.instance.PlayPlayerDieSound(getIndexOfPrefab());
+        print("isdie");
+    }
+
+    public void takeDamage(int value)
+    {
+        hp -= value;
+        SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
+        print(hp);
+        if( hp <= 0)
+        {
+            die();
+        }
     }
 
 }

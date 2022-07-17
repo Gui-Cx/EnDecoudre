@@ -16,6 +16,7 @@ public class Sword : Power
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Attack {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, swordData.ToString());
+        SoundAssets.instance.PlaySword();
     }
 
     public Sword(PowerData powerData, Player playerArg) : base(powerData, playerArg)
