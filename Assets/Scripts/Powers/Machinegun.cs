@@ -43,7 +43,7 @@ public class Machinegun : Power
 
     }
 
-    public Machinegun(PowerData powerData) : base(powerData){
+    public Machinegun(PowerData powerData, Player playerArg) : base(powerData, playerArg){
         mgData = powerData as MachinegunData; 
     }
 }

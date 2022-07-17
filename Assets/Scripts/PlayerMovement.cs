@@ -17,8 +17,19 @@ public class PlayerMovement : MonoBehaviour
     private float inputXTmp = 0;
     private float inputYTmp = -1;
     private Vector2 moveDirection;
+
     [SerializeField] private float moveSpeed;
     private bool isMoving;
+
+    public bool isControllable;
+
+    private Player player;
+
+    #region Dash
+    Dash dashPower;
+
+    private float dashElapsedTime;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -27,22 +38,20 @@ public class PlayerMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
         moveSpeed = maxSpeed;
+        player = this.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Player "+indexOfPrefab+" inputX " + inputX);
-        //Debug.Log("Player " + indexOfPrefab + " inputY " + inputY);
+        if (player.playerState == States.Dashing)
+        {
+            dashElapsedTime += Time.deltaTime;
+            rb.velocity = new Vector2(inputXTmp, inputYTmp) * dashPower.dashSpeed;
+            dashPower.DashFrame(dashElapsedTime);
 
-        moveDirection = new Vector2(inputX, inputY).normalized;
-        rb.velocity = new Vector2(moveDirection.x , moveDirection.y) * moveSpeed;
-        isMoving = !(inputX==0 && inputY==0);
-        //print(isMoving);
-        anim.SetBool("isMoving", isMoving);
-        
-
-        if (isMoving)
+        }
+        else
         {
             if (!onFly)
             {
@@ -50,15 +59,53 @@ public class PlayerMovement : MonoBehaviour
             }
             anim.SetFloat("inputX", inputX);
             anim.SetFloat("inputY", inputY);
+            //Debug.Log("isMoving");
             inputXTmp = inputX;
             inputYTmp = inputY;
-        }
-        else
-        {
-            anim.SetFloat("inputX", inputXTmp);
-            anim.SetFloat("inputY", inputYTmp);
-        }
+            //Debug.Log("Player "+indexOfPrefab+" inputX " + inputX);
+            //Debug.Log("Player " + indexOfPrefab + " inputY " + inputY);
 
+            moveDirection = new Vector2(inputX, inputY).normalized;
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+            isMoving = !(inputX == 0 && inputY == 0);
+            //print(isMoving);
+            anim.SetBool("isMoving", isMoving);
+
+
+            if (isMoving)
+            {
+                if (!onFly)
+                {
+                    SoundAssets.instance.PlayFootstep();
+                }
+                anim.SetFloat("inputX", inputX);
+                anim.SetFloat("inputY", inputY);
+                inputXTmp = inputX;
+                inputYTmp = inputY;
+            }
+            else
+            {
+
+
+                rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+                isMoving = !(inputX == 0 && inputY == 0);
+                //print(isMoving);
+                anim.SetBool("isMoving", isMoving);
+
+                if (isMoving)
+                {
+                    anim.SetFloat("inputX", inputX);
+                    anim.SetFloat("inputY", inputY);
+                    inputXTmp = inputX;
+                    inputYTmp = inputY;
+                }
+                else
+                {
+                    anim.SetFloat("inputX", inputXTmp);
+                    anim.SetFloat("inputY", inputYTmp);
+                }
+            }
+        }
     }
 
     public void SetOnFly(bool value)
@@ -89,6 +136,14 @@ public class PlayerMovement : MonoBehaviour
     public void setSpeed(float value)
     {
         moveSpeed = value;
+    }
+
+    public void InitDashMovement(Dash dash)
+    {
+        dashPower = dash;
+        player.playerState = States.Dashing;
+        dashElapsedTime = 0f;
+
     }
 
 }

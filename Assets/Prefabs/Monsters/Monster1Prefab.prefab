@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290828762662814016}
   - component: {fileID: 3040259927880354679}
+  - component: {fileID: -3606133230725261977}
   m_Layer: 0
   m_Name: Monster1Prefab
   m_TagString: Monster
@@ -136,3 +137,19 @@ MonoBehaviour:
   distanceDecay: 0
   degat: 10
   spawn: {fileID: 0}
+--- !u!58 &-3606133230725261977
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443522285807497800}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.13

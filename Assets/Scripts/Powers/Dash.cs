@@ -18,13 +18,53 @@ public class Dash : Power
     /// </summary>
     public DashData dashData;
 
+    public float elapsedTime;
+
+    public float dashSpeed;
+
+    public PlayerMovement playerMovement;
+
+    private LineRenderer lineRenderer;
+
     public override void ActivateOnce(Player player)
     {
-        Debug.LogFormat("Dash {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, dashData.ToString());
+        //Debug.LogFormat("Dash {0}/{1} : {2}", totalCharges - currentCharges, totalCharges, dashData.ToString());
+        Debug.LogFormat("Dash {0}/{1}", totalCharges - currentCharges, totalCharges);
+        player.playerState = States.Dashing;
+        lineRenderer.enabled = true;
+        playerMovement.InitDashMovement(this);
 
     }
-    public Dash(PowerData powerData) : base(powerData)
+    public Dash(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         dashData = powerData as DashData;
+        dashSpeed = dashData.distance / dashData.duration;
+        playerMovement = playerArg.gameObject.GetComponent<PlayerMovement>();
+        lineRenderer = player.GetComponent<LineRenderer>();
+    }
+    public void DashFrame(float elapsedTime)
+    {
+        List<RaycastHit2D> results = new List<RaycastHit2D>();
+        ContactFilter2D contactFilter2D = new ContactFilter2D();
+        contactFilter2D.NoFilter();
+        if (elapsedTime < dashData.duration)
+        {
+
+            // Physics2D.BoxCast(player.transform.position, new Vector3(dashData.movingDamageWidth/2, dashData.movingDamageHeight/2, 1), player.transform.forward, out rayHit ,player.transform.rotation);
+            Physics2D.BoxCast(player.transform.position, new Vector2(dashData.movingDamageWidth / 2, dashData.movingDamageHeight / 2), player.transform.rotation.z, new Vector2(1, 1), contactFilter2D, results, 0);
+        }
+        else if (elapsedTime > dashData.duration)
+        {
+            Physics2D.CircleCast(player.transform.position, dashData.endDamageRadius, direction: new Vector2(1, 1), contactFilter2D, results);
+            player.playerState = States.OnFoot;
+            lineRenderer.enabled = false;
+        }
+        foreach (var enemy in results)
+        {
+            if (enemy.collider.gameObject.tag.Equals("Monster"))
+            {
+                enemy.collider.GetComponent<Monster>()?.loseHP((elapsedTime < dashData.duration) ? dashData.movingDamage : dashData.endDamage );
+            }
+        }
     }
 }

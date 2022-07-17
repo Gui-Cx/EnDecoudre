@@ -27,7 +27,7 @@ public class Shotgun : Power
 
     }
 
-    public Shotgun(PowerData powerData) : base(powerData)
+    public Shotgun(PowerData powerData, Player playerArg) : base(powerData, playerArg)
     {
         shotgunData = powerData as ShotgunData;
     }

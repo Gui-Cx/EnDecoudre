@@ -27,9 +27,11 @@ public class Monster : MonoBehaviour
     }
 
     public void loseHP(int value)
+
     {
         currentHealth -= value;
-        if(currentHealth <= 0)
+        Debug.LogFormat("Cx : Enemy {0} lost {1} HP", gameObject.name, value);
+        if (currentHealth <= 0)
         {
             spawn.Decompt();
             Destroy(this.gameObject);

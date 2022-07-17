@@ -27,7 +27,8 @@ public static class SoundManager
         YeetDerminator1,
         YeetDerminator2,
         YeetDave1,
-        YeetDave2
+        YeetDave2,
+        WooshBoomerang
     }
 
     public static void PlaySound(Sound sound, float volume = 1f)
