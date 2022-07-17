@@ -11,26 +11,26 @@ public class UImanager : MonoBehaviour
     public Image playerOneLife, playerTwoLife;
 
 
-    public void SwapSkill(Sprite skill, int playerIndex, int faceValue) {
+    public void SwapSkill(Power power, Player player) {
 
-        switch(playerIndex) {
+        switch(player.getIndexOfPrefab()) {
             case 0:
-            playerOneSkill.sprite = skill;
-            //playerOneSkill.fillAmount = skill.maxCharges;
-            playerOneDiceface.text = faceValue.ToString();
+            //playerOneSkill.sprite = skill;
+            playerOneSkill.fillAmount = power.totalCharges;
+            playerOneDiceface.text = player.currentFace.ToString();
             break;
             case 1:
-            playerTwoSkill.sprite = skill;
-            //playerTwoSkill.fillAmount = skill.maxCharges;
-            playerTwoDiceface.text = faceValue.ToString();
+            //playerTwoSkill.sprite = skill;
+            playerTwoSkill.fillAmount = power.totalCharges;
+            playerTwoDiceface.text = player.currentFace.ToString();
             break;
         }
     }
 
-    public void UpdateShotCount(float amount, int maxAmmo,  int playerIndex) {
+    public void UpdateShotCount(Power currentPower, Player player) {
 
-        amount = amount / maxAmmo;
-        switch(playerIndex) {
+        float amount = currentPower.currentCharges / currentPower.totalCharges;
+        switch(player.getIndexOfPrefab()) {
             case 0:
             playerOneSkill.fillAmount = amount;
             break;
@@ -40,11 +40,11 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerLife(int amount, int maxLife, int playerIndex) {
+    public void UpdatePlayerLife(int amount, int maxLife, Player player) {
 
-        amount = amount / maxLife;
+        amount = amount / amount;
 
-        switch (playerIndex) {
+        switch (player.getIndexOfPrefab()) {
             case 0:
             playerOneLife.fillAmount = amount;
             break;
