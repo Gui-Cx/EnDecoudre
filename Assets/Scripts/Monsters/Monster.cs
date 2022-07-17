@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] protected int health;
+    [SerializeField] protected int maxHealth;
     [SerializeField] protected float speed;
     [SerializeField] protected float cooldown;
     [SerializeField] protected float distanceAttack;
     [SerializeField] protected float distanceDecay;
     [SerializeField] protected int degat;
+    protected int currentHealth;
 
     Player[] players;
     public Spawn spawn;
@@ -26,10 +27,11 @@ public class Monster : MonoBehaviour
     }
 
     public void loseHP(int value)
-    {   
+
+    {
+        currentHealth -= value;
         Debug.LogFormat("Cx : Enemy {0} lost {1} HP", gameObject.name, value);
-        health -= value;
-        if(health <= 0)
+        if (currentHealth <= 0)
         {
             spawn.Decompt();
             Destroy(this.gameObject);

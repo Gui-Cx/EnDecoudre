@@ -15,6 +15,8 @@ public class MachinegunData: PowerData
     [Tooltip("The number of damage each enemy hit by a bullet will take ")]
     public int damagePerBullet;
 
+    public GameObject bulletPrefab;
+
     public override string ToString()
     {
         return string.Format("MachineGunData : spread = {0}, bulletPerCharge = {1}, damagePerBullet = {2}, cooldown = {3}, totalCharges = {4}", spread, bulletPerCharge, damagePerBullet, cooldown, totalCharges);
