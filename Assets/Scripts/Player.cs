@@ -88,7 +88,9 @@ public class Player : MonoBehaviour
         {
             playerState = States.OnFoot;
             anim.SetBool("onWait", false);
-            playerMovement.setSpeed(playerMovement.maxSpeed);
+            if (!isDead) {
+                playerMovement.setSpeed(playerMovement.maxSpeed); 
+            }
         }
     }
 
@@ -96,7 +98,7 @@ public class Player : MonoBehaviour
     {
         Collider2D[] colliders = new Collider2D[10];
         var tempNumber = this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders);
-        Collider2D temp = colliders.FirstOrDefault(x => x.CompareTag("Player"));
+        Collider2D temp = colliders.FirstOrDefault(x => x!=null && x.CompareTag("Player"));
         
         if ( tempNumber > 0 && temp != null && temp.gameObject.GetComponent<Player>() is Player otherPlayer)
         {
@@ -128,7 +130,7 @@ public class Player : MonoBehaviour
     public void Roll()
     {
         currentFace = rnd.Next(0, availablePowers.Count); //Next(int x, int y) returns a value between x and y, upper bound excluded.
-
+        //currentFace = (int)PowerEnum.Machinegun;
 
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
