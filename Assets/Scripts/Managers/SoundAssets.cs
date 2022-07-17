@@ -15,6 +15,8 @@ public class SoundAssets : MonoBehaviour
     public AudioClip ambiantMusic;
     private AudioSource musicSource;
 
+    public AudioClip StartMusic;
+    public AudioClip EndMusic;
 
     public float musicVolumeModifier = 0.35f;
     public float sfxVolumeModifier = 0.5f;
@@ -52,6 +54,23 @@ public class SoundAssets : MonoBehaviour
         musicSource.volume = 0.5f; 
         mainMusicVolume = 0.5f;
         mainSFXVolume = 0.5f;
+    }
+    internal void PlayStartMusic()
+    {
+        StartCoroutine(StopMusicWithFade());  
+        PlayMusic(StartMusic);
+    }
+
+    internal void PlayMainMusic()
+    {
+        StartCoroutine(StopMusicWithFade());
+        PlayMusic(mainMusic);
+    }
+
+    internal void PlayGameOverMusic()
+    {
+        StartCoroutine(StopMusicWithFade());
+        PlayMusic(EndMusic);
     }
 
     public void PlayMusic(AudioClip musicClip)

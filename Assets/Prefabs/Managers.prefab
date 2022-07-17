@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5663918934269319113}
   - component: {fileID: 5663918934269319114}
+  - component: {fileID: 3188463775793137389}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +97,8 @@ MonoBehaviour:
   canPlayStep: 1
   mainMusic: {fileID: 0}
   ambiantMusic: {fileID: 0}
+  StartMusic: {fileID: 0}
+  EndMusic: {fileID: 0}
   musicVolumeModifier: 0.35
   sfxVolumeModifier: 0.5
   mainMusicVolume: 1
@@ -104,3 +107,15 @@ MonoBehaviour:
   ambiantSlide: {fileID: 0}
   sfxSlide: {fileID: 0}
   stepFrequency: 0.3
+--- !u!114 &3188463775793137389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663918934269319115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42aed9f7a6c03c547bf7382a75f578a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
