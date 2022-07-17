@@ -18,5 +18,4 @@ MonoBehaviour:
   radius: 7
   angle: 8
   damage: 9
-  numberBullet: 1
   bulletPrefab: {fileID: 1212286309019803801, guid: 48caf4d9560274244ac2ea47f1b49df8, type: 3}

@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
     private IEnumerator CooldownAttack()
     {
         canFire = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         canFire = true;
         yield return null;
     }
