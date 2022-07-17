@@ -9,5 +9,12 @@ public class Monster1 : Monster
         print("hnelo");
     }
 
+    public override IEnumerator doAttack(Player player)
+    {
+        player.takeDamage(degat);
+        yield return new WaitForSeconds(cooldown);
+        monsterState = MonsterStates.Reaching;
+        yield return null;
+    }
 
 }

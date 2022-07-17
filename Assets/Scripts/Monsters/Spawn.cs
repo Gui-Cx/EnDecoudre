@@ -52,20 +52,21 @@ public class Spawn : MonoBehaviour
 
     private IEnumerator Spawning()
     {
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < monsters.Count; i++)
         {
             switch (monsters[i])
             {
                 case MonsterEnum.Monster1:
-                    GameObject gameObject1 = Instantiate(spawner.Monster1);
+                    GameObject gameObject1 = Instantiate(spawner.Monster1, transform.position, transform.rotation);
                     gameObject1.GetComponent<Monster>().spawn = this;
                     break;
                 case MonsterEnum.Monster2:
-                    GameObject gameObject2 = Instantiate(spawner.Monster2);
+                    GameObject gameObject2 = Instantiate(spawner.Monster2, transform.position, transform.rotation);
                     gameObject2.GetComponent<Monster>().spawn = this;
                     break;
                 case MonsterEnum.Monster3:
-                    GameObject gameObject3 = Instantiate(spawner.Monster3);
+                    GameObject gameObject3 = Instantiate(spawner.Monster3, transform.position, transform.rotation);
                     gameObject3.GetComponent<Monster>().spawn = this;
 
                     break;

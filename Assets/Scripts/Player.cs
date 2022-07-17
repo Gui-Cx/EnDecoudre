@@ -126,6 +126,22 @@ public class Player : MonoBehaviour
 
     }
 
+
+    private void die()
+    {
+        print("isdie");
+    }
+
+    public void takeDamage(int value)
+    {
+        hp -= value;
+        print(hp);
+        if( hp <= 0)
+        {
+            die();
+        }
+    }
+
 }
 
 
