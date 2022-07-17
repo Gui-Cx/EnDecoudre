@@ -14,10 +14,14 @@ public class Nova : Power
     /// int total charges : the number of attack before this power is unusable
     /// float cooldown : the time between two attacks 
     /// </summary>
-    NovaData novaData;
+    public NovaData novaData;
+
+    GameObject novaAreaGO;
 
     public override void ActivateOnce(Player player){
         Debug.LogFormat("Nova {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, novaData.ToString());
+        novaAreaGO = GameObject.Instantiate(novaData.novaAreaPrefab, player.transform);
+        // novaAreaGO.GetComponent<NovaArea>().Init(this);
     }
 
     public Nova(PowerData powerData, Player playerArg) : base (powerData, playerArg){
