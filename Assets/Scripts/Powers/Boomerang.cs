@@ -17,6 +17,7 @@ public class Boomerang : Power
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Boomerang {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, boomerangData.ToString());
+        SoundAssets.instance.PlayBoomerang();
         Vector2 directionToTarget = new Vector2(player.gameObject.GetComponent<PlayerMovement>().getDirection()[0],
         player.gameObject.GetComponent<PlayerMovement>().getDirection()[1]);
         if (directionToTarget.x != 0 && directionToTarget.y != 0)

@@ -17,6 +17,7 @@ public class Shotgun : Power
     public override void ActivateOnce(Player player)
     {
         Debug.LogFormat("Shotgun {0}/{1} : {2}", totalCharges - currentCharges, totalCharges, shotgunData.ToString());
+        SoundAssets.instance.PlayBullet();
         Vector2 directionToTarget = new Vector2(player.gameObject.GetComponent<PlayerMovement>().getDirection()[0],
                 player.gameObject.GetComponent<PlayerMovement>().getDirection()[1]);
         if(directionToTarget.x!=0 && directionToTarget.y != 0)

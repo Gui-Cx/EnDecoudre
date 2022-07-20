@@ -157,6 +157,10 @@ public class SoundAssets : MonoBehaviour
         }
     }
 
+    public void PlayNova()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.Kaboom);
+    }
     public void PlayBoomerang()
     {
         SoundManager.PlaySound(SoundManager.Sound.WooshBoomerang);

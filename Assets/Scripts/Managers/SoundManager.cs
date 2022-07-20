@@ -32,7 +32,9 @@ public static class SoundManager
 
         MainMusic,
         GameOverMusic,
-        StartMenuMusic
+        StartMenuMusic,
+
+        Kaboom
     }
 
     public static void PlaySound(Sound sound, float volume = 1f)
