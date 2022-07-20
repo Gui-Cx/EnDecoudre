@@ -230,15 +230,21 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int value)
     {
-        hp -= value;
-        SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
-        Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
-        _uimanager.UpdatePlayerLife(this);
-        if( hp <= 0)
+        if (hp > 0)
         {
-            die();
-            hp = 0;
+            hp -= value;
+            SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
+            Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
         }
+
+        if ( hp <= 0 && !isDead)
+        {
+            hp = -1;
+            die();
+        }
+
+
+        _uimanager.UpdatePlayerLife(this);
     }
 
 }
