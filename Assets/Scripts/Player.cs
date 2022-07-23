@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] int indexOfPrefab;
     GameObject deathBubble;
     GameObject throwBubble;
+    Transform _groudCircle;
     private int indexOfFace;
     public static event Action<int> ThePlayerSpawns;
     public States playerState;
@@ -59,6 +60,9 @@ public class Player : MonoBehaviour
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
         throwBubble.SetActive(false);
+
+        _groudCircle = transform.GetChild(3);
+
         hp = maxHP;
         canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
@@ -134,6 +138,11 @@ public class Player : MonoBehaviour
 
     }
 
+    private static Vector2 GroundCircleDUringParabola(Vector2 start, Vector2 end, float height, float t)
+    {
+        return Vector2.Lerp(start, end, t);
+    }
+
 
     public void Roll()
     {
@@ -161,6 +170,7 @@ public class Player : MonoBehaviour
             animation += Time.deltaTime;
             //transform.position = Parabola(start, finish, duration, animation / duration);
             transform.position = Parabola(start, finish, duration, animation / duration);
+            _groudCircle.position = GroundCircleDUringParabola(start, finish, duration, animation / duration);
             Collider2D[] colliders = new Collider2D[2];
             if(this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders) > 0 && !colliders.First().gameObject.CompareTag("Player"))
             {
@@ -170,6 +180,9 @@ public class Player : MonoBehaviour
             //lancer l'aleatoire entre 1 et 6 avec powers ? en gros tenir a jour une valeur int faceValue pour que des l'atterissage on soit dans la bonne animation
             yield return null;
         }
+
+        _groudCircle.position = gameObject.transform.position;
+
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
