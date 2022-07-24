@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour
 
 
     [SerializeField] float zoomFactor = 1.5f;
-    [SerializeField] float followTimeDelta = 0.8f;
+    [SerializeField] float followTimeDelta = 0.2f;
     [SerializeField] float distMin = 2;
     [SerializeField] float distMax = 6;
     [SerializeField] float magnitudeDelta = 0.1f;
@@ -72,7 +72,7 @@ public class CameraScript : MonoBehaviour
         
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (player0Ready && player1Ready)
         {

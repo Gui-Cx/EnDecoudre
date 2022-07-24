@@ -33,11 +33,12 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Transform playerTransform;
     Animator anim;
+    private SpriteRenderer spriteRenderer;
     
     UImanager _uimanager;
     private Rigidbody2D rb;
 
-    bool canFire;
+    bool canFire; //for cooldown
 
     private float duration = 2f;
 
@@ -60,15 +61,13 @@ public class Player : MonoBehaviour
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
         throwBubble.SetActive(false);
-
+        spriteRenderer=gameObject.GetComponent<SpriteRenderer>();
         _groudCircle = transform.GetChild(3);
 
         hp = maxHP;
         canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
     }
-
-
 
     void Start()
     {
@@ -122,12 +121,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
     }
 
-    private void Update()
-    {
-        //print(playerState);
-    }
-        //print(this.GetComponent<PlayerInput>().currentControlScheme);
-
     public static Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
     {
         Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
@@ -138,7 +131,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private static Vector2 GroundCircleDUringParabola(Vector2 start, Vector2 end, float height, float t)
+    private static Vector2 GroundCircleDuringParabola(Vector2 start, Vector2 end, float height, float t)
     {
         return Vector2.Lerp(start, end, t);
     }
@@ -153,40 +146,68 @@ public class Player : MonoBehaviour
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
         indexOfFace = currentFace +1;
     }
-
-
-    public IEnumerator Fly(Vector2 start, Vector2 finish)
+    
+    private bool HitWall(Vector2 start, Vector2 finish)
     {
+        rb.position = finish; //On simule la fin de la trajectoire
+        Collider2D[] colliders = new Collider2D[2];
+        if (this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders) > 0 && !colliders.First().gameObject.CompareTag("Player"))
+        {
+            rb.position = start;
+            return true;
+        }
+        rb.position = start;
+        return false;
+    }
+
+    private void SpriteScale(float progression)
+    {
+        progression= (progression<0.5) ? (1 - progression) : progression;
+        progression = (progression + 0.2f < 1f) ? progression + 0.2f : progression;
+        transform.localScale = new Vector3(progression, progression, 1);
+
+    }
+
+    public IEnumerator Fly(Vector2 start, Vector2 finish) //Se faire yeet
+    {
+        //Permet de voir si la trajectoire fait sortir le joueur du terrain
+        //Si oui, on arrête le joueur dès qu'il touche un mur (perfectible)
+        //Si non, on permet au joueur de passer sur les murs pour donner un effet de "saut"
+        bool hitWall = HitWall(start,finish);
+        playerState = States.Flying;
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
-        //this.GetComponent<BoxCollider2D>().isTrigger = true;
         anim.SetBool("onFly", true);
         // faut lancer ROLL pour que sa change la valeur de indexOfFace
         Roll();
-        Debug.LogFormat("index of Face = {0}", indexOfFace);
+
         while (animation < duration)
         {
             animation += Time.deltaTime;
-            //transform.position = Parabola(start, finish, duration, animation / duration);
+            //scale du joueur
+            SpriteScale(animation / duration);
+            //lancement du joueur selon une parabole
             transform.position = Parabola(start, finish, duration, animation / duration);
-            _groudCircle.position = GroundCircleDUringParabola(start, finish, duration, animation / duration);
-            Collider2D[] colliders = new Collider2D[2];
-            if(this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders) > 0 && !colliders.First().gameObject.CompareTag("Player"))
+            //Le cercle agi comme une ombre au sol, elle se déplace tout droit
+            _groudCircle.position = GroundCircleDuringParabola(start, finish, duration, animation / duration);
+            if (hitWall) //On verifie les collisions
             {
-                break;
+                Collider2D[] collidersone = new Collider2D[2];
+                if (this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), collidersone) > 0 && !collidersone.First().gameObject.CompareTag("Player"))
+                {
+                    break;
+                }
             }
+
             anim.SetInteger("indexOfFace", indexOfFace);
-            //lancer l'aleatoire entre 1 et 6 avec powers ? en gros tenir a jour une valeur int faceValue pour que des l'atterissage on soit dans la bonne animation
             yield return null;
         }
 
-        _groudCircle.position = gameObject.transform.position;
-
+        _groudCircle.position = transform.position;
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
-        //this.GetComponent<BoxCollider2D>().isTrigger = false;
         _uimanager.SwapSkill(currentPower, this);
         anim.SetBool("onFly", false);
         yield return null;
@@ -194,7 +215,7 @@ public class Player : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead)
+        if (GameManager.Instance.State == GameManager.GameState.InGame && !isDead && playerState==States.OnFoot)
         {
             if (context.performed)
             {
@@ -255,7 +276,6 @@ public class Player : MonoBehaviour
             hp = -1;
             die();
         }
-
 
         _uimanager.UpdatePlayerLife(this);
     }
