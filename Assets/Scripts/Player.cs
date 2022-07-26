@@ -33,9 +33,14 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Transform playerTransform;
     Animator anim;
-    
+
+    private bool isInvincible = false;
+    [SerializeField]
+    private float invincibilityDurationSeconds;
+    [SerializeField]
+    private float invincibilityDeltaTime;
     UImanager _uimanager;
-    private Rigidbody2D rb;
+   // private Rigidbody2D rb;
 
     bool canFire;
 
@@ -43,6 +48,7 @@ public class Player : MonoBehaviour
 
     public int currentFace;
 
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField]
     public List<PowerData> listPowerPrefabs;
@@ -55,7 +61,7 @@ public class Player : MonoBehaviour
         detection = gameObject.GetComponent<CircleCollider2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
+       // rb = gameObject.GetComponent<Rigidbody2D>();
         deathBubble = transform.GetChild(1).gameObject;
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
@@ -66,6 +72,8 @@ public class Player : MonoBehaviour
         hp = maxHP;
         canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -243,23 +251,49 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int value)
     {
+        if (isInvincible) return;
+
         if (hp > 0)
         {
             hp -= value;
             SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
             Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
+            _uimanager.UpdatePlayerLife(this);
         }
 
         if ( hp <= 0 && !isDead)
         {
             hp = -1;
             die();
+            _uimanager.UpdatePlayerLife(this);
+            return;
         }
 
-
-        _uimanager.UpdatePlayerLife(this);
+        StartCoroutine(BecomeTemporarilyInvincible());
+        
     }
 
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        isInvincible = true;
+
+        for (float i = 0; i < invincibilityDurationSeconds; i += invincibilityDeltaTime)
+        {
+            // Alternate between 0 and 1 scale to simulate flashing
+            if (spriteRenderer.enabled)
+            {
+                spriteRenderer.enabled = false;
+            }
+            else
+            {
+                spriteRenderer.enabled = true;
+            }
+            yield return new WaitForSeconds(invincibilityDeltaTime);
+        }
+
+        spriteRenderer.enabled = true;
+        isInvincible = false;
+    }
 }
 
 

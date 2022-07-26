@@ -387,6 +387,8 @@ MonoBehaviour:
   playerState: 0
   playerMovement: {fileID: 0}
   playerTransform: {fileID: 0}
+  invincibilityDurationSeconds: 1
+  invincibilityDeltaTime: 0.15
   currentFace: 1
   listPowerPrefabs:
   - {fileID: 11400000, guid: 971dd6dce314f6342b506adc7a4ad9f3, type: 2}

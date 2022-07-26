@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour
     [SerializeField] protected float distanceAttack;
     [SerializeField] protected float distanceDecay;
     [SerializeField] protected int degat;
+    [SerializeField] private float invincibilityDurationSeconds;
+    [SerializeField] private float invincibilityDeltaTime;
     protected int currentHealth;
 
     Player[] players;
@@ -21,6 +23,7 @@ public class Monster : MonoBehaviour
     protected bool canAttack;
     protected MonsterStates monsterState;
     private Player player; //cible
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class Monster : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player").Select(x => x.GetComponent<Player>()).ToArray();
         isInvuln = false;
         canAttack = true;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void loseHP(int value)
@@ -50,9 +54,22 @@ public class Monster : MonoBehaviour
     private IEnumerator waitInvuln()
     {
         isInvuln = true;
-        yield return new WaitForSeconds(1);
+        for (float i = 0; i < invincibilityDurationSeconds; i += invincibilityDeltaTime)
+        {
+            // Alternate between 0 and 1 scale to simulate flashing
+            if (spriteRenderer.enabled)
+            {
+                spriteRenderer.enabled = false;
+            }
+            else
+            {
+                spriteRenderer.enabled = true;
+            }
+            yield return new WaitForSeconds(invincibilityDeltaTime);
+        }
+
+        spriteRenderer.enabled = true;
         isInvuln = false;
-        yield return null;
     }
     private void reach(Player player)
     {
