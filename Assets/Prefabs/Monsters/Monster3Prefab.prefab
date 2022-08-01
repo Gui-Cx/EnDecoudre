@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6586051102760065331}
   - component: {fileID: 7229643440897489735}
   - component: {fileID: 337391763961581073}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Monster3Prefab
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274205937061521555}
   - component: {fileID: 3789441157874840721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Isometric Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}

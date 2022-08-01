@@ -14,8 +14,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] public GameObject Monster3;
     [SerializeField] public GameObject[] doors;
 
-    public static event Action wavesFinish;
-
     int nbFinishSpawn; //spawn fini 
     int indexWave; //vague actuelle
 

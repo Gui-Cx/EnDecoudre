@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8579221448165557736}
   - component: {fileID: 3087934193837460276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3040259927880354679}
   - component: {fileID: -3606133230725261977}
   - component: {fileID: -460682740288966032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Monster1Prefab
   m_TagString: Monster
   m_Icon: {fileID: 0}

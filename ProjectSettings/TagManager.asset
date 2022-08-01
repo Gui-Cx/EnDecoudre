@@ -11,12 +11,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
-  - PlayerLayer
-  - Wall
-  - 
+  - Player
+  - PlayerChild
+  - Monster
   - 
   - 
   - 

@@ -14,7 +14,7 @@ public class Monster1 : Monster
         if (canAttack)
         {
             canAttack = false;
-            player.takeDamage(degat);
+            player.TakeDamage(degat);
             Debug.Log("ok");
             yield return new WaitForSeconds(cooldown);
             monsterState = MonsterStates.Reaching;
