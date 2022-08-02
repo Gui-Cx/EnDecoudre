@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     public States playerState;
     public PlayerMovement playerMovement;
     public Transform playerTransform;
-    
+
     UImanager _uimanager;
     private Rigidbody2D rb;
 
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
         throwBubble.SetActive(false);
-        spriteRenderer=gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         _groudCircle = transform.GetChild(3);
         _yeetDistanceX = 5f;
         _yeetDistanceY = 3f;
@@ -88,21 +88,22 @@ public class Player : MonoBehaviour
 
     public void Yeet(InputAction.CallbackContext context) //Se mettre en position d'attente du Yeet
     {
-       if (playerState == States.OnFoot) 
+        if (playerState == States.OnFoot)
         {
             playerState = States.Waiting;
-            anim.SetBool("onWait", true); //Animation de la flèche
+            anim.SetBool("onWait", true); //Animation de la fl?che
             throwBubble.SetActive(true); //On active le CircleCollider qui detecte l'autre joueur pour le yeet
             playerMovement.setSpeed(0); //On ne peut pas bouger lors de l'attente
-            StartCoroutine(ReviveCoroutine()); //A déplacer
+            StartCoroutine(ReviveCoroutine()); //A d?placer
         }
-        if (context.canceled) 
+        if (context.canceled)
         {
             playerState = States.OnFoot; //On reintialise le joueur lorsqu'il relache le bouton
             anim.SetBool("onWait", false);
-            throwBubble.SetActive(false); 
-            if (playerState != States.Dead) {
-                playerMovement.setSpeed(playerMovement.maxSpeed); 
+            throwBubble.SetActive(false);
+            if (playerState != States.Dead)
+            {
+                playerMovement.setSpeed(playerMovement.maxSpeed);
             }
         }
     }
@@ -126,10 +127,10 @@ public class Player : MonoBehaviour
         //currentFace = (int)PowerEnum.Machinegun;
         Debug.LogFormat("Cx : {0} rolled {1}", this.gameObject.name, availablePowers[currentFace]);
         currentPower = Power.GetPower(this, availablePowers[currentFace], listPowerPrefabs);
-        indexOfFace = currentFace +1;
+        indexOfFace = currentFace + 1;
     }
-    
-   
+
+
     private bool HitWall(Vector2 start, Vector2 finish) //deprecated
     {
         rb.position = finish; //On simule la fin de la trajectoire
@@ -144,28 +145,28 @@ public class Player : MonoBehaviour
         rb.position = start;
         return false;
     }
-    private int CalculDistanceYeet(float[] direction )
+    private int CalculDistanceYeet(float[] direction)
     {
         int iter = _yeetIteration;
         Vector2 trajectoire = new Vector2(direction[0], direction[1]);
         int layerMask = ~((1 << 6) | (1 << 7) | (1 << 8));
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y), 
-            trajectoire, 
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y),
+            trajectoire,
             Mathf.Abs(direction[0] * _yeetDistanceX) + Mathf.Abs(direction[1] * _yeetDistanceY),
             layerMask);
         if (hit.collider != null) //Si il y a un mur sur la trajectoire 
         {
-            //On itère en réduisant la taille du lancée, si on est trop proche on abandonne le yeet
-            for(int i =_yeetIteration-1; i > 0; i--)
+            //On it?re en r?duisant la taille du lanc?e, si on est trop proche on abandonne le yeet
+            for (int i = _yeetIteration - 1; i > 0; i--)
             {
                 iter = i;
                 RaycastHit2D hitAgain = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y),
             trajectoire,
-            Mathf.Abs(direction[0] * _yeetDistanceX*i/_yeetIteration) + Mathf.Abs(direction[1] * _yeetDistanceY*i/_yeetIteration),
+            Mathf.Abs(direction[0] * _yeetDistanceX * i / _yeetIteration) + Mathf.Abs(direction[1] * _yeetDistanceY * i / _yeetIteration),
             layerMask);
-            if (!hitAgain.collider)
+                if (!hitAgain.collider)
                 {
-                break;
+                    break;
                 }
             }
         }
@@ -174,9 +175,9 @@ public class Player : MonoBehaviour
 
     private void SpriteScale(float progression)
     {
-        progression= (progression<0.5) ? (1 - progression) : progression;
+        progression = (progression < 0.5) ? (1 - progression) : progression;
         progression = (progression + 0.2f < 1f) ? progression + 0.2f : progression;
-        transform.localScale = new Vector3(2-progression,2-progression, 1);
+        transform.localScale = new Vector3(2 - progression, 2 - progression, 1);
     }
 
     public void MakeFly(Player otherPlayer) //Lance le joueur
@@ -184,9 +185,9 @@ public class Player : MonoBehaviour
         float[] direction = playerMovement.getDirection();
         ///On test avec des raycasts si on peut lancer le joueur sans qu'il touche le mur
         ///S'il touche le mur, on essaie en divisant par i/_yeetiteration
-        ///On yeet le joueur sur une distance où l'on sait qu'il ne va pas traverser le mur
-        ///todo : empêcher le joueur de pouvoir indiquer le yeet si trop proche
-        int distanceDivision = CalculDistanceYeet(direction); 
+        ///On yeet le joueur sur une distance o? l'on sait qu'il ne va pas traverser le mur
+        ///todo : emp?cher le joueur de pouvoir indiquer le yeet si trop proche
+        int distanceDivision = CalculDistanceYeet(direction);
         if (distanceDivision == 1) //Trop proche du mur, on abandonne
         {
             playerState = States.OnFoot;
@@ -195,8 +196,11 @@ public class Player : MonoBehaviour
         else
         {
             otherPlayer.playerState = States.Flying;
-            otherPlayer.StartCoroutine(otherPlayer.Fly(new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
-                new Vector2(otherPlayer.playerTransform.position.x + direction[0] * _yeetDistanceX * (distanceDivision / _yeetIteration), otherPlayer.playerTransform.position.y + direction[1] * _yeetDistanceY * (distanceDivision / _yeetIteration) )));
+            float _xYeet = direction[0] * _yeetDistanceX * (float)((float)distanceDivision / (float)_yeetIteration) -0.1f;
+            float _yYeet = direction[1] * _yeetDistanceY * (float)((float)distanceDivision / (float)_yeetIteration)-0.1f;
+            otherPlayer.StartCoroutine(otherPlayer.Fly(
+                new Vector2(otherPlayer.playerTransform.position.x, otherPlayer.playerTransform.position.y),
+                new Vector2(otherPlayer.playerTransform.position.x + _xYeet , otherPlayer.playerTransform.position.y + _yYeet)));
         }
         playerState = States.OnFoot;
     }
@@ -218,13 +222,13 @@ public class Player : MonoBehaviour
             SpriteScale(animation / duration);
             //lancement du joueur selon une parabole
             transform.position = Parabola(start, finish, duration, animation / duration);
-            //Le cercle agi comme une ombre au sol, elle se déplace tout droit
+            //Le cercle agi comme une ombre au sol, elle se d?place tout droit
             _groudCircle.position = GroundCircleDuringParabola(start, finish, duration, animation / duration);
 
             anim.SetInteger("indexOfFace", indexOfFace);
             yield return null;
         }
-        transform.localScale = new Vector3(1, 1,1);
+        transform.localScale = new Vector3(1, 1, 1);
         _groudCircle.position = transform.position;
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
@@ -236,7 +240,7 @@ public class Player : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context) //Attaque
     {
-        if (GameManager.Instance.State == GameManager.GameState.InGame && playerState==States.OnFoot)
+        if (GameManager.Instance.State == GameManager.GameState.InGame && playerState == States.OnFoot)
         {
             if (context.performed)
             {
@@ -290,7 +294,7 @@ public class Player : MonoBehaviour
 
         if (tempNumber > 0 && temp != null && temp.gameObject.GetComponent<Player>() is Player otherPlayer)
         {
-            if (otherPlayer.playerState==States.Dead)
+            if (otherPlayer.playerState == States.Dead)
             {
                 otherPlayer.Revive();
             }
@@ -305,7 +309,7 @@ public class Player : MonoBehaviour
             SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
             Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
         }
-        if ( hp <= 0 && playerState!=States.Dead)
+        if (hp <= 0 && playerState != States.Dead)
         {
             hp = -1;
             Die();
@@ -314,7 +318,6 @@ public class Player : MonoBehaviour
     }
 
 }
-
 
 
 
