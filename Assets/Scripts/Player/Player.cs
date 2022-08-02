@@ -76,7 +76,10 @@ public class Player : MonoBehaviour
         Roll();
         _uimanager.SwapSkill(currentPower, this);
         _uimanager.UpdateShotCount(currentPower, this);
-        playerTransform.position = new Vector2(indexOfPrefab, 0);
+        if(indexOfPrefab==0)
+            playerTransform.position = new Vector2(0, -3f);
+        else
+            playerTransform.position = new Vector2(5f, -3f);
         SoundAssets.instance.PlaySpawnSound();
         ThePlayerSpawns?.Invoke(indexOfPrefab);
     }
@@ -223,13 +226,13 @@ public class Player : MonoBehaviour
             //lancement du joueur selon une parabole
             transform.position = Parabola(start, finish, duration, animation / duration);
             //Le cercle agi comme une ombre au sol, elle se d?place tout droit
-            _groudCircle.position = GroundCircleDuringParabola(start, finish, duration, animation / duration);
+            _groudCircle.position = GroundCircleDuringParabola(start-new Vector2(0,0.4f), finish - new Vector2(0, 0.4f), duration, animation / duration);
 
             anim.SetInteger("indexOfFace", indexOfFace);
             yield return null;
         }
         transform.localScale = new Vector3(1, 1, 1);
-        _groudCircle.position = transform.position;
+        _groudCircle.position = transform.position - new Vector3(0, 0.4f,0);
         this.GetComponent<PlayerMovement>().SetInput(0, 0);
         this.GetComponent<PlayerMovement>().SetOnFly(false);
         playerState = States.OnFoot;
