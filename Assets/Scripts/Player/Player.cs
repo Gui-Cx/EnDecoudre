@@ -42,34 +42,22 @@ public class Player : MonoBehaviour
     public States playerState;
     public PlayerMovement playerMovement;
     public Transform playerTransform;
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
 
-=======
-    Animator anim;
 
     private bool isInvincible = false;
     [SerializeField]
     private float invincibilityDurationSeconds;
     [SerializeField]
     private float invincibilityDeltaTime;
->>>>>>> main:Assets/Scripts/Player.cs
+
     UImanager _uimanager;
-   // private Rigidbody2D rb;
 
     bool canFire; //for cooldown
 
     private float duration = 2f;
 
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
-=======
-    public int currentFace;
 
-    private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    public List<PowerData> listPowerPrefabs;
-
->>>>>>> main:Assets/Scripts/Player.cs
     void Awake()
     {
         _uimanager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
@@ -77,7 +65,6 @@ public class Player : MonoBehaviour
         anim = this.GetComponent<Animator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-       // rb = gameObject.GetComponent<Rigidbody2D>();
         deathBubble = transform.GetChild(1).gameObject;
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
@@ -155,21 +142,6 @@ public class Player : MonoBehaviour
         indexOfFace = currentFace + 1;
     }
 
-
-    private bool HitWall(Vector2 start, Vector2 finish) //deprecated
-    {
-        rb.position = finish; //On simule la fin de la trajectoire
-        Collider2D[] colliders = new Collider2D[2];
-        if (this.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), colliders) > 0 && !colliders.First().gameObject.CompareTag("Player"))
-        {
-            print("yes");
-            rb.position = start;
-            return true;
-        }
-        print("no");
-        rb.position = start;
-        return false;
-    }
     private int CalculDistanceYeet(float[] direction)
     {
         int iter = _yeetIteration;
@@ -337,22 +309,15 @@ public class Player : MonoBehaviour
             Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
             _uimanager.UpdatePlayerLife(this);
         }
+
         if (hp <= 0 && playerState != States.Dead)
         {
             hp = -1;
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
             Die();
         }
         _uimanager.UpdatePlayerLife(this);
-=======
-            die();
-            _uimanager.UpdatePlayerLife(this);
-            return;
-        }
-
         StartCoroutine(BecomeTemporarilyInvincible());
-        
->>>>>>> main:Assets/Scripts/Player.cs
+
     }
 
     private IEnumerator BecomeTemporarilyInvincible()
