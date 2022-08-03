@@ -42,14 +42,34 @@ public class Player : MonoBehaviour
     public States playerState;
     public PlayerMovement playerMovement;
     public Transform playerTransform;
+<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
 
+=======
+    Animator anim;
+
+    private bool isInvincible = false;
+    [SerializeField]
+    private float invincibilityDurationSeconds;
+    [SerializeField]
+    private float invincibilityDeltaTime;
+>>>>>>> main:Assets/Scripts/Player.cs
     UImanager _uimanager;
-    private Rigidbody2D rb;
+   // private Rigidbody2D rb;
 
     bool canFire; //for cooldown
 
     private float duration = 2f;
 
+<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
+=======
+    public int currentFace;
+
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    public List<PowerData> listPowerPrefabs;
+
+>>>>>>> main:Assets/Scripts/Player.cs
     void Awake()
     {
         _uimanager = GameObject.FindGameObjectWithTag("UImanager").GetComponent<UImanager>();
@@ -57,7 +77,7 @@ public class Player : MonoBehaviour
         anim = this.GetComponent<Animator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         playerTransform = gameObject.GetComponent<Transform>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
+       // rb = gameObject.GetComponent<Rigidbody2D>();
         deathBubble = transform.GetChild(1).gameObject;
         deathBubble.SetActive(false);
         throwBubble = transform.GetChild(2).gameObject;
@@ -70,6 +90,8 @@ public class Player : MonoBehaviour
         hp = maxHP;
         canFire = true;
         availablePowers = new List<PowerEnum>() { PowerEnum.Nova, PowerEnum.Shotgun, PowerEnum.Boomerang, PowerEnum.Dash, PowerEnum.Sword, PowerEnum.Machinegun };
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -306,20 +328,54 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(int value)
     {
+        if (isInvincible) return;
+
         if (hp > 0)
         {
             hp -= value;
             SoundAssets.instance.PlayTakeDamagePlayer(getIndexOfPrefab());
             Debug.LogFormat("{0} lost {1} Hp", gameObject.name, value);
+            _uimanager.UpdatePlayerLife(this);
         }
         if (hp <= 0 && playerState != States.Dead)
         {
             hp = -1;
+<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
             Die();
         }
         _uimanager.UpdatePlayerLife(this);
+=======
+            die();
+            _uimanager.UpdatePlayerLife(this);
+            return;
+        }
+
+        StartCoroutine(BecomeTemporarilyInvincible());
+        
+>>>>>>> main:Assets/Scripts/Player.cs
     }
 
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        isInvincible = true;
+
+        for (float i = 0; i < invincibilityDurationSeconds; i += invincibilityDeltaTime)
+        {
+            // Alternate between 0 and 1 scale to simulate flashing
+            if (spriteRenderer.enabled)
+            {
+                spriteRenderer.enabled = false;
+            }
+            else
+            {
+                spriteRenderer.enabled = true;
+            }
+            yield return new WaitForSeconds(invincibilityDeltaTime);
+        }
+
+        spriteRenderer.enabled = true;
+        isInvincible = false;
+    }
 }
 
 
