@@ -4,9 +4,10 @@
 
 <h1 align="center" style="font-weight: bold">Neon Dice</h1>
 
-
 We made this game during the 2022 [GMTK Game Jam](https://itch.io/jam/gmtk-jam-2022), created by Mark Brown of the Youtube channel ["Game Maker's Toolkit"](https://www.youtube.com/@GMTK/featured). We participated as part of Télécom SudParis and Institut Mine-Télécom's game creation club, the CELL.
 This game jam started on the 15/07/2022 at 19:00 UTC and finished 2 days later, on the 17/07/2022 at 21:00. 
+
+<img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/Logo_IMT_Business_School.svg" alt="Logo of IMT-BS" width="150"/> <img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/Logo_Cell.png" alt="Logo of the CELL" width="200"/> <img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/TSP_logo.png" alt="Logo of TSP" width="100"/>
 
 # **Theme** 
 ### The theme of the GMTK Game Jam was
@@ -21,6 +22,8 @@ Neon Dice is a two-player cooperation top-down shooter, in which the players pla
 The main mechanic of the game is that at any moment, a die can take a "yeet stance", so it can throw the other die in the air when it gets close. When the other die lands, it gets another fully-recharged ability at random.  
 
 This mechanic asks the players to adapt to the abilities they are given, and to co-operate to allow each other to take full advantage of the abilities available.
+
+<img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/Yeet.PNG" alt="Yeet stance"/>
 
 # **The team**
 
@@ -50,10 +53,12 @@ https://sulray.itch.io/ | https://github.com/sulray
 - Toni Oriol - Game Designer ✒\
 https://tonioriol.work/
 
-- Prométhée Toneatti 💻 \
+- Prométhée Toneatti - Developer 💻 \
 https://akasuna.itch.io | https://github.com/Akasunaa
 
 Please note that all the assets used in this game, graphic or audio, were handcrafted by our team during the game jam.
+
+<img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/Capture_1.png" alt="Screen capture of the game"/>
 
 # **Controls** 
 
