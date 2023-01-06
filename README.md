@@ -73,5 +73,5 @@ Please note that all the assets used in this game, graphic or audio, were handcr
 - Attack : L 
 - Yeet stance : K
 
-### Play the game on itch.io :
+# Play the game on itch.io :
 https://flegmatik-surf.itch.io/neon-dice
