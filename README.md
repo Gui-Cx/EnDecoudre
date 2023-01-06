@@ -1,15 +1,16 @@
-![Neon Dice]()
-
-[//]: # Neon Dice (image)
+<div style="text-align: center;">
+<img align="center" src="https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/NeonDiceTitle.png" alt="Logo of the Neon Dice game" width="400"/>
+</div>
 
 <h1 align="center" style="font-weight: bold">Neon Dice</h1>
+
 
 We made this game during the 2022 [GMTK Game Jam](https://itch.io/jam/gmtk-jam-2022), created by Mark Brown of the Youtube channel ["Game Maker's Toolkit"](https://www.youtube.com/@GMTK/featured). We participated as part of Télécom SudParis and Institut Mine-Télécom's game creation club, the CELL.
 This game jam started on the 15/07/2022 at 19:00 UTC and finished 2 days later, on the 17/07/2022 at 21:00. 
 
 # **Theme** 
 ### The theme of the GMTK Game Jam was
-![roll_of_the_dice]()
+![roll_of_the_dice](https://github.com/Gui-Cx/EnDecoudre/blob/main/ReadmeResources/RollOfTheDice.png)
 
 # **Our Game** 
 
@@ -63,6 +64,9 @@ Please note that all the assets used in this game, graphic or audio, were handcr
 - Yeet stance : V
 
 ### Player two :
-- Move : ZQSD / WASD depending on your keyboard 
-- Attack : C 
-- Yeet stance : V
+- Move : ↑←↓→
+- Attack : L 
+- Yeet stance : K
+
+### Play the game on itch.io :
+https://flegmatik-surf.itch.io/neon-dice
