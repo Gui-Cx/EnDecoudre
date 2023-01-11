@@ -21,6 +21,14 @@ public class Sword : Power
         Debug.LogFormat("Attack {0}/{1} : {2}", totalCharges-currentCharges, totalCharges, swordData.ToString());
         SoundAssets.instance.PlaySword();
         swordAreaGO = GameObject.Instantiate(swordData.swordAreaPrefab, player.transform);
+        GameObject effect = GameObject.Instantiate(swordData.swordEffect, player.transform.position+player.transform.forward*0.5f, rotation:Quaternion.identity, player.transform);
+        Animator animator = effect.GetComponent<Animator>();
+        //TODO : Trouver comment obtenir la direction dans laquelle se trouve le personnage
+        animator.SetFloat("inputX", player.playerMovement.inputXTmp);
+        animator.SetFloat("inputY", player.playerMovement.inputYTmp);
+        GameObject.Destroy(effect, swordData.duration);
+
+        // animator.Play("Base Layer");
     }
 
     public Sword(PowerData powerData, Player playerArg) : base(powerData, playerArg)

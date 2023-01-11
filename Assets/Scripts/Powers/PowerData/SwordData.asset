@@ -15,8 +15,9 @@ MonoBehaviour:
   totalCharges: 5
   cooldown: 22
   sprite: {fileID: 21300000, guid: 33625f5d4deae3848acc73c8ecf3c363, type: 3}
-  radius: 23
+  radius: 3
   angle: 180
   damage: 25
   swordAreaPrefab: {fileID: 8506247593818016171, guid: b0d5381f2fa1a1f478693bce67064dd8, type: 3}
-  duration: 0
+  swordEffect: {fileID: 889950393349652866, guid: fa841b5af4a75e242b5bd33a206266b1, type: 3}
+  duration: 0.1

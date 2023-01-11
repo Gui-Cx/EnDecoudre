@@ -14,8 +14,23 @@ public class PlayerMovement : MonoBehaviour
 
     private int indexOfPrefab;
     private bool onFly;
-    private float inputXTmp = 0;
-    private float inputYTmp = -1;
+    
+    /// <summary>
+    /// At any moment, (inputXTmp, inputYTmp) is the vector representing the direction in which the die faces. 
+    /// inputXTmp = -1 if the die faces left;
+    /// inputXTmp = 0 if the die faces up or down;
+    /// inputXTmp = 1 if the die faces right.    
+    /// </summary>
+    public float inputXTmp = 0;
+        /// <summary>
+
+    /// At any moment, (inputXTmp, inputYTmp) is the vector representing the direction in which the die faces. 
+    /// inputYTmp = -1 if the die faces down;
+    /// inputYTmp = 0 if the die faces left or right;
+    /// inputYTmp = 1 if the die faces up.    
+    /// </summary>
+
+    public float inputYTmp = -1;
     private Vector2 moveDirection;
 
     [SerializeField] private float moveSpeed;

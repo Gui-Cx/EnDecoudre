@@ -18,6 +18,10 @@ public class SwordData : PowerData
     [Tooltip("The prefab of the game object of the sword area")]
     public GameObject swordAreaPrefab;
 
+    [SerializeField]
+    [Tooltip("The animation for the sword effect")]
+    public GameObject swordEffect;
+
     [Tooltip("The duration of the sword attack")]
     public float duration;
 

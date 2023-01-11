@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         }
         if (context.canceled)
         {
-            playerState = States.OnFoot; //On reintialise le joueur lorsqu'il relache le bouton
+            playerState = States.OnFoot; //On reinitialise le joueur lorsqu'il relache le bouton
             anim.SetBool("onWait", false);
             throwBubble.SetActive(false);
             if (playerState != States.Dead)
@@ -205,6 +205,7 @@ public class Player : MonoBehaviour
     {
 
         playerState = States.Flying;
+        //TODO : Remplacer ça par l'attribut "playerMovement", mais il faut que je vérifie s'il y a pas une bonne raison à faire un GetComponent 
         this.GetComponent<PlayerMovement>().SetOnFly(true);
         SoundAssets.instance.PlayYeetSound(getIndexOfPrefab());
         float animation = 0f;
