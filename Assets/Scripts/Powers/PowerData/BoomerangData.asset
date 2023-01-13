@@ -18,3 +18,4 @@ MonoBehaviour:
   distance: 11
   duration: 12
   damage: 13
+  bulletPrefab: {fileID: 1212286309019803801, guid: e8d29c0ceb5d1ab40b4ef510076fcdf1, type: 3}
